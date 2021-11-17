@@ -1,0 +1,4881 @@
+XOpenDisplay()					stdio rpath dns inet unix
+	- XSetErrorHandler()			stdio
+	- XSetIOErrorHandler()			stdio
+	- Xcalloc() 				stdio
+	- OutOfMemory()				stdio
+	- _XConnectXCB()			stdio rpath dns inet unix
+	- _XPollfdCacheInit()			stdio
+	- xcb_get_setup()			""
+	- _XVIDtoVisual()			""
+	- xcb_get_maximum_request_length()	stdio rpath
+	- XCreateGC()				stdio rpath
+	- XSynchronize()			stdio rpath
+	- LockDisplay()				stdio rpath
+	- GetReq()				stdio rpath
+	- RootWindow()				""
+	- Xmalloc()				stdio
+	- _XEatDataWords()			stdio
+	- UnlockDisplay()			stdio
+	- XkbUseExtension()			stdio rpath
+
+XSetErrorHandler()				stdio
+	- _XLockMutex()				stdio
+	- _XUnlockMutex()			stdio
+
+XSetIOErrorHandler()				stdio
+	- _XLockMutex()				stdio
+	- _XUnlockMutex()			stdio
+
+Xmalloc() 					stdio
+Xcalloc() 					stdio
+Xrealloc() 					stdio
+Xfree() 					stdio
+
+OutOfMemory()					stdio
+	-  xcb_disconnect()			stdio
+	- _XFreeDisplayStructure()		stdio
+
+_XConnectXCB()					stdio rpath dns inet unix
+	- Xcalloc()				stdio
+	- xcb_parse_display()			stdio
+	- _XLockMutex()				stdio
+	- xcb_connect_to_display_with_auth_info()	stdio rpath dns inet unix
+	- xcb_connect()					stdio rpath dns inet unix
+	- xcb_get_file_descriptor()		""
+	- _XUnlockMutex()			stdio
+	- xcb_generate_id()			stdio rpath
+	- xcondition_malloc()			stdio
+	- xcondition_init()			stdio
+	- xcb_connection_has_error()		""
+
+_XPollfdCacheInit()
+	- Xmalloc()				stdio
+
+xcb_get_setup()					""
+
+XVIDtoVisual()					""
+
+xcb_get_maximum_request_length()		stdio rpath
+	- xcb_prefetch_maximum_request_length()	stdio rpath
+	- xcb_big_requests_enable_reply()	stdio
+
+XCreateGC()					stdio rpath
+	- LockDisplay()				stdio rpath
+	- Xmalloc()				stdio
+	- UnlockDisplay()			stdio
+	- SyncHandle()				stdio rpath
+	- _XUpdateGCCache()			stdio
+	- GetReq()				stdio rpath 
+	- XAllocID()				""
+	- _XGenerateGCList()			stdio rpath
+
+LockDisplay()					stdio rpath
+	*->lock_fns->lock_display()		stdio rpath
+		- = _XLockDisplay()		stdio rpath
+
+UnlockDisplay()					stdio
+	*->lock_fns->unlock_display()
+		- = _XUnlockDisplay()		stdio
+
+GetReq()				stdio rpath
+	- GetReqSized()			stdio rpath
+
+GetReqSized()				stdio rpath
+	- _XGetRequest()		stdio rpath
+
+_XGetRequest()				stdio rpath
+	- _XFlush()			stdio rpath
+
+RootWindow()				""
+	- ScreenOfDisplay()		""
+
+ScreenOfDisplay()			""
+
+_XEatDataWords()			stdio
+	- _XFreeReplyData()		stdio
+
+XkbUseExtension()			stdio rpath
+	- XkbTypedCalloc()		stdio
+	- XInternAtom()			stdio rpath
+	- LockDisplay()			stdio rpath
+	- UnlockDisplay()		stdio
+	- XInitExtension()		stdio rpath
+	- GetReq()			stdio rpath
+	- _XReply()			stdio rpath 
+	- SyncHandle()
+	- XESetWireToEvent
+
+XSynchronize()				stdio rpath
+	- LockDisplay()			stdio rpath
+	- UnlockDisplay()		stdio
+
+_XLockMutex()				stdio
+	- *_XLockMutex_fn		stdio
+		- = *_XLockMutex_fn_p	stdio
+			- = xmutex_lock()	stdio
+
+_XUnlockMutex()				stdio
+	- *_XUnlockMutex_fn		stdio
+		- = *X_UnlockMutex_fn_p	stdio
+			- = xmutex_unlock() stdio
+
+xcb_disconnect()			stdio
+	- _xcb_in_destroy()		stdio
+	- _xcb_out_destroy()		stdio
+	- _xcb_ext_destroy()		stdio
+	- _xcb_xid_destroy()		stdio
+
+_XFreeDisplayStructure()		stdio
+	- _XIsEventCookie()		stdio
+	- _XStoreEventCookie()		stdio
+	- _XFreeEventCookies()		stdio
+	- Xfree()			stdio
+	- XrmDestroyDatabase()		stdio
+	- _XFreeExtData()		stdio
+	- FreeDisplayLock()		stdio 
+	- _XFreeX11XCBStructure()	stdio
+
+xcb_parse_display()			stdio
+	_xcb_parse_display() 			stdio
+
+_xcb_parse_display() 				stdio
+
+xcb_connect_to_display_with_auth_info()		stdio rpath dns inet unix
+	- xcb_parse_display()			stdio	
+	- _xcb_conn_ret_error()			""
+	- _xcb_open()				stdio rpath dns inet unix
+	- _xcb_connect_to_fd()			stdio
+	- _xcb_get_auth_info()			stdio inet or unix
+	- xcb_disconnect()			stdio
+
+xcb_connect()					stdio rpath dns inet unix
+	- xcb_connect_to_display_with_auth_info()	stdio rpath dns inet unix
+
+xcb_get_file_descriptor()			""
+	
+xcb_generate_id()				stdio rpath
+	- xcb_get_extension_data()		stdio rpath
+	- xcb_xc_misc_get_xid_range_reply()	stdio
+	- xcb_xc_misc_get_xid_range()		stdio rpath
+
+xcondition_malloc()				stdio 
+
+xcondition_init()				stdio
+	
+xcb_connection_has_error()			""
+
+xcb_prefetch_maximum_request_length()		stdio rpath
+	- xcb_get_extension_data()		stdio rpath
+	- xcb_big_requests_enable()		stdio rpath
+	
+xcb_big_requests_enable_reply()			stdio
+	- xcb_wait_for_reply()			stdio
+
+xcb_big_requests_enable()			stdio rpath
+	- xcb_send_request()			stdio rpath
+	
+SyncHandle()				stdio rpath
+	*->synchandler			stdio rpath
+		- _XSyncFunction()	stdio rpath
+			- XSync()	stdio rpath
+
+XSync()					stdio rpath
+	- LockDisplay()			stdio rpath
+	- GetEmptyReq()			stdio rpath
+	- _XReply()			stdio rpath
+	- UnlockDisplay()		stdio
+
+_XUpdateGCCache()			stdio
+
+XAllocID()				""
+	*->resource_alloc
+		- _XAllocID()		""
+
+_XAllocID()				""
+	- _XSetPrivSyncFunction()	""
+
+_XLockDisplay()				stdio rpath
+	- _XDisplayLockWait()		stdio
+	- _XIDHandler()			stdio rpath
+	- _XSeqSyncFunction()		stdio rpath
+
+_XUnlockDisplay()			stdio
+
+_XFlush()				stdio rpath
+	- require_socket()		stdio rpath
+	- _XSend()			stdio rpath
+	- _XEventsQueued()		stdio rpath
+
+require_socket()			stdio rpath
+	- xcb_take_socket()		stdio rpath
+	- _XIOError()			stdio
+	- throw_thread_fail_assert()	stdio
+
+throw_thread_fail_assert()		stdio
+	- xcb_fail_assert()		stdio
+
+xcb_fail_assert()			stdio
+
+_XFreeReplyData()			stdio
+
+XkbTypedCalloc				stdio
+	- Xcalloc()			stdio
+
+XInternAtom()				stdio rpath
+	- LockDisplay()			stdio rpath
+	- _XInternAtom()		stdio rpath
+	- UnlockDisplay()		stdio
+	- _XReply()			stdio rpath
+	- _XUpdateAtomCache()
+	- SyncHandle()
+
+_XInternAtom()				stdio rpath
+	- Xcalloc()			stdio
+	- GetReq()			stdio rpath
+	- Data()			stdio rpath
+
+Data()					stdio rpath
+	- _XSend()			stdio rpath
+
+XInitExtension()			stdio rpath
+	- XQueryExtension()		stdio rpath
+	- LockDisplay()			stdio rpath
+	- Xfree()			stdio
+	- UnlockDisplay()		stdio
+
+_XReply()				stdio rpath
+	- throw_extlib_fail_assert()	stdio
+	- _XSend()			stdio rpath
+	- append_pending_request()	stdio
+	- ConditionWait()		stdio
+	- UnlockDisplay()		stdio
+	- xcb_wait_for_reply()		stdio
+	- InternalLockDisplay()		stdio
+	- handle_response()		stdio rpath
+	- ConditionBroadcast()		stdio
+	- XLIB_SEQUENCE_COMPARE()	""
+	- throw_thread_fail_assert()	stdio
+	- handle_error()		stdio rpath
+	- _XIOError()			stdio
+	- _XFreeReplyData()		stdio
+
+XESetWireToEvent()			stdio rpath
+	- LockDisplay()			stdio rpath
+	- UnlockDisplay()		stdio
+
+xcb_in_destroy()			stdio
+	- free_reply_list()		stdio
+	- _xcb_map_delete()		stdio
+	
+_xcb_out_destroy()			stdio
+
+_xcb_ext_destroy()			stdio
+
+_xcb_xid_destroy()			stdio
+
+_XIsEventCookie()			stdio
+
+_XStoreEventCookie()			stdio
+	- _XIsEventCookie()		stdio
+	- Xmalloc()			stdio
+	- ESET()			""
+	- _XIOError()			stdio
+	- DL_APPEND()			""
+
+_XFreeEventCookies()			stdio
+	- DL_FOREACH_SAFE()		""
+	- XFree()			stdio
+
+XrmDestroyDatabase()			stdio
+	- _XLockMutex()			stdio
+	- DestroyLTable()		stdio
+	- _XUnlockMutex()		stdio
+	- _XFreeMutex()			stdio
+	- Xfree()			stdio
+
+_XFreeExtData()				stdio
+	- Xfree()			stdio
+	*->free_private
+		- _XF86BigfontFreeCodes ""
+		- _XF86BigfontFreeNop	""
+
+_XF86BigfontFreeCodes()			""
+
+_XF86BigfontFreeNop()			""
+
+FreeDisplayLock()			stdio
+	- _XFreeDisplayLock_fn		stdio
+
+_XFreeDisplayLock_fn()			stdio
+	- xmutex_clear()		stdio
+	- xmutex_free()			stdio
+	- xcondition_clear()		stdio
+	- xcondition_free()		stdio
+	- Xfree()			stdio
+
+xcondition_clear()			stdio
+
+
+xcondition_free()			stdio
+	- xfree()			stdio
+
+// Yes, this is exactly what it looks like.
+xfree()					stdio
+	- Xfree()			stdio
+
+// As is this
+XFree()					stdio
+	- xfree()			stdio
+
+_XFreeX11XCBStructure()			stdio
+	- xcondition_free()		stdio
+	- xfree()			stdio
+
+_xcb_conn_ret_error()			""
+
+_xcb_open()				stdio rpath dns inet unix
+	- _xcb_open_tcp()		stdio dns inet
+	// is_system_labeled()		are you now or have you ever been solaris
+	- stat(2)			rpath
+	- MIN()				""
+	- _xcb_open_unix()		unix
+
+_xcb_connect_to_fd()			stdio
+	- xcb_conn_ret_error()		""
+	- _xcb_in_init()		stdio
+	- _xcb_out_init()		""
+	- write_setup()			stdio
+	- read_setup()			stdio
+	- _xcb_ext_init()		stdio
+	- _xcb_xid_init()		stdio
+	- xcb_disconnect()		stdio
+
+_xcb_get_auth_info()			stdio inet/unix
+	- get_peer_sock_name()		inet or unix
+	- get_authptr()			stdio rpath dns
+	- memdup()			stdio
+	- compute_auth()		stdio
+	- XauDisposeAuth()		stdio
+
+xcb_get_extension_data()		stdio rpath
+	- get_lazyreply()		stdio rpath
+	- xcb_query_extension_reply()	stdio
+
+xcb_xc_misc_get_xid_range_reply()	stdio
+	- xcb_wait_for_reply()		stdio
+
+xcb_xc_misc_get_xid_range()		stdio rpath
+	- xcb_send_request()		stdio rpath
+
+xcb_wait_for_reply()			stdio
+
+xcb_send_request()			stdio rpath
+	- xcb_send_request64()		stdio rpath
+
+xcb_send_request64()			stdio rpath
+	- xcb_get_extension_data()	stdio rpath
+	- _xcb_conn_shutdown()		""
+	- prepare_socket_request()	stdio rpath
+	- send_request()		stdio
+
+GetEmptyReq()				stdio rpath
+	- _XGetRequest()		stdio rpath
+
+_XSetPrivSyncFunction()			""
+
+_XDisplayLockWait()			stdio
+	- xthread_self()		stdio
+	- xthread_equal()		stdio
+	- ConditionWait()		stdio
+
+_XIDHandler()
+	- _XAllocIDs()
+
+_XSeqSyncFunction()
+	- GetEmptyReq()			stdio rpath
+	- sync_while_locked()
+	- _XSetPrivSyncFunction()	""
+
+_XSend()				stdio rpath
+	- xcb_writev()			stdio
+	- _XIOError()			stdio
+	- *->before_flush		""
+	- check_internal_connections()	stdio rpath
+	- _XSetSeqSyncFunction()	stdio
+
+_XEventsQueued()			stdio rpath
+	- _XSend()			stdio rpath
+	- check_internal_connections()	stdio rpath
+	- poll_for_response()		stdio
+	- handle_response()		stdio rpath
+	- xcb_connection_has_error()	""
+	- _XIOError()			stdio
+
+xcb_take_socket()			stdio rpath
+	- get_socket_back()		stdio rpath
+	- _xcb_out_flush_to()		stdio 
+	- _xcb_in_expect_reply()	stdio
+
+_XIOError()				stdio
+	- UnlockDisplay()		stdio
+	- _XIOErrorFunction()		""
+	- _XDefaultIOError()		stdio
+
+_XUpdateAtomCache()			stdio
+	- Xcalloc()			stdio
+	- HASH()			""
+	- REHASHVAL()			""
+	- REHASH()			""
+	- Xmalloc()			stdio
+	
+XQueryExtension()			stdio rpath
+	- LockDisplay()			stdio rpath
+	- GetReq()			stdio rpath
+	- _XSend()			stdio rpath
+	- _XReply()			stdio rpath
+	- UnlockDisplay()		stdio
+	- SyncHandle()
+
+throw_extlib_fail_assert()		stdio
+	- xcb_fail_assert()		stdio
+
+append_pending_request()		stdio
+	- XLIB_SEQUENCE_COMPARE()	""
+	- throw_thread_fail_assert()	stdio
+
+ConditionWait()				stdio
+	*->condition_wait
+		- _XConditionWait()	stdio
+			- xcondition_wait() stdio
+
+xcondition_wait()			stdio
+
+InternalLockDisplay()			stdio
+	- *->lock->internal_lock_display
+		 -_XInternalLockDisplay()	stdio
+
+handle_response()			stdio rpath
+	*->handler (async_handlers)
+	- handle_error()		stdio rpath
+
+ConditionBroadcast()			stdio
+	- *->lock->condition_broadcast
+		- _XConditionBroadcast() stdio
+
+XLIB_SEQUENCE_COMPARE()			""
+
+handle_error()				stdio rpath
+	- *->error
+	- _XError()
+	
+free_reply_list()			stdio
+
+_xcb_map_delete()			stdio
+	*do_free
+		- free_reply_list()	stdio
+
+ESET()					""
+
+DL_APPEND()				""
+
+
+DestroyLTable()				stdio
+	- Xfree()			stdio
+
+_XFreeMutex()				stdio
+	_XFreeMutex_fn()		stdio
+		- xmutex_clear()	stdio
+		- xmutex_free()		stdio
+		
+xmutex_clear()				stdio
+
+xmutex_free()				stdio
+
+_xcb_open_tcp()					stdio dns inet
+	- getaddrinfo(3)			dns
+	- _xcb_socket(AF_INET/AF_INET6)		inet
+	- _xcb_do_connect()			inet
+	- freeaddrinfo(3)			stdio
+
+MIN()					""
+
+_xcb_open_unix()			unix
+	- _xcb_socket(AF_UNIX)		unix
+	- getsockopt(2)			unix
+	- setsockopt(2)			unix
+	- connect(2)			unix
+
+_xcb_in_init()				stdio
+	- _xcb_map_new()		stdio
+
+_xcb_out_init()				""
+
+write_setup()				stdio
+	- XCB_PAD()			""
+	- _xcb_out_send()		stdio
+	
+read_setup()						stdio
+	- _xcb_in_read_block()				stdio
+	- xcb_setup_failed_reason()			""
+	- xcb_setup_failed_reason_length()		""
+	- xcb_setup_authenticate_reason()		""
+	- xcb_setup_authenticate_reason_length()	""
+
+_xcb_ext_init()				stdio
+
+_xcb_xid_init()				stdio
+
+get_peer_sock_name()			inet or unix
+	*socket_func			could be inet or unix, check this
+		getpeername(2)		inet or unix
+		getsockname(2)		inet or unix
+
+get_authptr()				stdio rpath dns
+	- IN6_IS_ADDR_LOOPBACK()	""
+	- SIN6_ADDR()			""
+	- MIN()				""
+	- gethostname(3)		stdio
+	- XauGetBestAuthByAddr()	rpath dns
+
+memdup()				stdio
+
+compute_auth()				stdio
+	- authname_match()		stdio
+	- memdup()			stdio
+	- APPEND()			stdio
+	- do_append()			stdio
+	- XdmcpWrap()			""
+
+XauDisposeAuth()			stdio
+
+get_lazyreply()				stdio rpath	
+	- get_index()			stdio
+	- xcb_query_extension()		stdio rpath
+
+xcb_query_extension_reply()		stdio
+	- xcb_wait_for_reply()		stdio
+
+_xcb_conn_shutdown()			""
+
+prepare_socket_request()		stdio rpath
+	- get_socket_back()		stdio rpath
+
+send_request()				stdio
+	- _xcb_in_expect_reply()	stdio
+	- _xcb_out_send()		stdio
+
+xthread_self()				stdio
+
+xthread_equal()				stdio
+
+XAllocIDs()				stdio rpath
+	- *->idlist_alloc		stdio rpath
+		- _XAllocIDs()		stdio rpath
+
+_XAllocIDs()				stdio rpath
+	- UnlockDisplay()		stdio
+	- xcb_generate_id()		stdio rpath
+	- InternalLockDisplay()		stdio
+	- *->lock->user_unlock_display	stdio
+
+sync_while_locked()
+	- *->lock->user_lock_display
+		- _XUserLockDisplay()	stdio
+	- UnlockDisplay()		stdio
+	- SyncHandle()			stdio rpath
+	- InternalLockDisplay()		stdio
+	- *->lock->user_unlock_display	stdio
+		- _XUserUnlockDisplay()	stdio
+
+xcb_writev()				stdio
+	- _xcb_out_send()		stdio
+
+*->before_flush				""	***
+
+check_internal_connections()		stdio rpath
+	- select(2)			stdio
+	- _XIOError()			stdio
+	- _XProcessInternalConnection() stdio rpath
+
+_XSetSeqSyncFunction()			stdio
+	- sync_hazard()			stdio
+	- _XSetPrivSyncFuction()	""
+
+poll_for_response()			stdio
+	- xcb_poll_for_reply()		stdio
+	- XLIB_SEQUENCE_COMPARE()	""
+	- throw_thread_fail_assert()	stdio
+	- dequeue_pending_request()	stdio
+
+get_socket_back()			stdio rpath
+	- *->out.return_socket		stdio rpath
+		- return_socket()	stdio rpath
+	- _xcb_in_replies_done()	""
+	
+
+HASH()					""
+REHASHVAL()				""
+REHASH()				""
+
+_xcb_out_flush_to()			stdio
+	- XCB_SEQUENCE_COMPARE()	""
+	- _xcb_out_send()		stdio
+	
+_xcb_in_expect_reply()			stdio
+	- _xcb_conn_shutdown()		""
+
+_xcb_out_send()				stdio
+	- _xcb_conn_wait()		stdio
+	- _xcb_in_wake_up_next_reader()	stdio
+
+_XInternalLockDisplay()			stdio
+	- _DisplayLockWait()		stdio
+
+_XDisplayLockWait()			stdio
+	- xthread_self()		stdio
+	- xthread_equal()		stdio
+	- ConditionWait()		stdio
+
+*_XIOErrorFunction()			""	***
+	// set by XSetIOErrorHandler()
+	- _XDefaultIOError()		stdio
+
+_XDefaultIOError()			stdio
+	- ECHECK()			""
+	- DisplayString()		""
+	- NextRequest()			""
+	- LastKnownRequestProcessed()	""
+	- QLength()			""
+
+_XConditionBroadcast()				stdio
+	- xcondition_broadcast()		stdio
+
+xcondition_broadcast()				stdio
+
+*->error					""	***
+	// set by XESetError()
+
+_XError()
+	- _XSetLastRequestRead()		stdio
+	*->handler (async)
+		- _XAsyncErrorHandler()		""
+	- *->lock->user_lock_display		stdio
+	- UnlockDisplay()			stdio
+	- LockDisplay()				stdio rpath
+	- _XDefaultError()			stdio rpath
+
+_xcb_socket(DOMAIN)				stdio inet/unix
+	- socket(2|DOMAIN)			inet or unix
+	- fnctl(F_SETFD, FD_CLOEXEC)		stdio
+
+_xcb_do_connect()				inet
+	// only ever called with AF_INET* domain
+	- setsockopt(2)				inet
+	- connect(2)				inet
+
+_xcb_map_new()					stdio
+
+XCB_PAD()					""
+
+_xcb_in_read()					stdio
+	_xcb_conn_shutdown()			""
+	- read_packet()				stdio
+
+read_packet()					stdio 
+	- XCB_SEQUENCE_COMPARE()		""
+	- _xcb_map_put()			stdio
+	- remove_finished_readers()		stdio
+	- _xcb_conn_shutdown()			""
+	- _xcb_in_read_block()			stdio
+	- read_fds()				stdio
+	
+remove_finished_readers()			stdio
+	- XCB_SEQUENCE_COMPARE()		""
+
+read_fds()					stdio
+
+_xcb_in_read_block()				stdio
+	- read_block()				stdio
+	- _xcb_conn_shutdown()			""
+
+xcb_setup_failed_reason()			""
+
+xcb_setup_failed_reason_length()		""
+
+xcb_setup_authenticate_reason()			""
+
+xcb_setup_authenticate_reason_length()		""
+
+SIN6_ADDR()					""
+
+IN6_IS_ADDR_LOOPBACK()				""
+
+XauGetBestAuthByAddr()				rpath dns
+	- fopen(3)				rpath
+	- _XGethostbyname()			dns
+	- XauReadAuth()				stdio
+	- binaryEqual()				stdio
+	- XauDisposeAuth()			stdio
+	- fclose(3)				stdio
+
+binaryEqual()					stdio
+
+authname_match()				stdio
+
+APPEND()					stdio
+	- do_append()				stdio
+
+do_append()					stdio
+
+XdmcpWrap()					""
+	- _XdmcpWrapperToOddParity()		""
+	- _XdmcpAuthSetup()			""
+	- _XdmcpAuthDoIt()			""
+
+get_index()					stdio
+
+xcb_query_extension()				stdio rpath
+	- xcb_send_request()			stdio rpath
+
+_XUserUnlockDisplay()				stdio
+	- ConditionBroadcast()			stdio
+	- xthread_clear_id()			""
+
+_XUserLockDisplay()				stdio
+	- _XDisplayLockWait()			stdio
+	- xthread_self()			stdio
+
+_XProcessInternalConnection()			stdio rpath
+	- UnlockDisplay()			stdio
+	- *->read_callback
+	- LockDisplay()				stdio rpath
+
+sync_hazard()					stdio
+
+xcb_poll_for_reply()				stdio
+	- poll_for_reply()			stdio
+	- widen()				""
+
+dequeue_pending_request()			stdio
+	- throw_thread_fail_assert()		stdio
+	- XLIB_SEQUENCE_COMPARE()		""
+
+return_socket()					stdio rpath
+	- InternalLockDisplay()			stdio
+	- _XSend()				stdio rpath
+	- UnlockDisplay()			stdio
+
+_xcb_in_replies_done()				""
+	- container_of()			""
+
+_xcb_conn_wait()				stdio
+	- _xcb_conn_shutdown()			""
+	- _xcb_in_read()			stdio
+	- write_vec()				stdio
+
+_xcb_in_wake_up_next_reader()			stdio
+
+ECHECK()					""
+
+DisplayString()					""
+
+NextRequest()					""
+
+LastKnownRequestProcessed()			""
+
+QLength()					""
+
+_XSetLastRequestRead()				stdio
+
+_XAsyncErrorHandler()				""
+
+_XDefaultError()				stdio rpath
+	- _XPrintDefaultError()			stdio rpath
+
+read_block()					stdio
+
+XauReadAuth()					stdio
+	- read_short()				stdio
+	- read_counted_string()			stdio
+
+read_short()					stdio
+
+read_counted_string()				stdio
+
+_XGethostbyname()
+	- gethostbyname(3)			dns
+
+_XdmcpWrapperToOddParity()			""
+	- OddParity()				""
+
+OddParity()					""
+
+_XdmcpAuthSetup()				""
+	- c2l()					""
+	- PERM_OP()				""
+	- HPERM_OP()				""
+
+c2l()						""
+PERM_OP()					""
+HPERM_OP()					""
+
+_XdmcpAuthDoIt()				""
+	- c2l()					""
+	- PERM_OP()				""
+	- l2c()					""
+
+l2c()						""
+
+xthread_clear_id()				""
+
+*->read_callback()
+	// set by _XRegisterInternalConnection()
+	- _XimTransInternalConnection()
+
+_XimTransInternalConnection()
+	- LastKnownRequestProcessed()		""
+	- XPutBackEvent()
+	- XFlush()
+
+poll_for_reply()				stdio
+	- XCB_SEQUENCE_COMPARE()		""
+	- _xcb_map_remove()			stdio
+	- _xcb_map_put()			stdio
+
+widen()						""
+
+write_vec()					stdio
+	- _xcb_conn_shutdown()			""
+
+_XPrintDefaultError()				stdio rpath
+	- XGetErrorText()			stdio rpath
+	- XGetErrorDatabaseText()		stdio rpath
+
+XPutBackEvent()
+	- LockDisplay()				stdio rpath
+	- _XPutBackEvent()			stdio
+	- UnlockDisplay()			stdio
+
+XFlush()
+	- LockDisplay()				stdio rpath
+	- _XFlush()				stdio rpath
+	- UnlockDisplay()			stdio
+
+XCB_SEQUENCE_COMPARE()				""
+
+_xcb_map_remove()				stdio
+
+_xcb_map_put()					stdio
+
+XGetErrorText()					stdio rpath
+	- XGetErrorDatabaseText()		stdio rpath
+
+XGetErrorDatabaseText()
+	- XrmGetFileDatabase()			stdio rpath
+	- _XLockMutex()				stdio
+	- _XUnlockMutex()			stdio
+	- XrmDestroyDatabase()			stdio
+	- XrmGetResource()			stdio
+	- Xfree()				stdio
+
+_XPutBackEvent()				stdio
+	- _XIsEventCookie()			stdio
+	- _XFetchEventCookie()			stdio
+	- _XCopyEventCookie()			stdio
+	- Xmalloc()				stdio
+
+XrmGetFileDatabase()				stdio rpath
+	- ReadInFile()				stdio rpath
+	- NewDatabase()				stdio
+	- _XLockMutex()				stdio
+	- GetDatabase()				stdio rpath
+	- _XUnlockMutex()			stdio
+	- Xfree()				stdio
+
+XrmDestroyDatabase()				stdio
+	- _XLockMutex()				stdio
+	- DestroyLTable()			stdio
+	- DestroyNTable()			stdio
+	- _XUnlockMutex()			stdio
+	- _XFreeMutex()				stdio
+	- Xfree()				stdio
+
+XrmGetResource()				stdio
+	- XrmStringToNameList()			stdio
+	- XrmStringToClassList()		stdio
+	- XrmQGetResource()			stdio 
+	- XrmQuarkToString()			stdio
+
+_XFetchEventCookie()				stdio
+	- _XIsEventCookie()			stdio
+	- DL_FOREACH()				""
+	- DL_DELETE()				""
+	- Xfree()				stdio
+
+DL_FOREACH()					""
+DL_FOREACH_SAFE()				""
+DL_DELETE()					""
+
+_XCopyEventCookie()				stdio
+	- _XIsEventCookie()			stdio
+	- *->generic_event_copy_vec[]		""
+
+ReadInFile()					stdio rpath
+	- _XOpenFile(O_RDONLY)			rpath
+	- Xmalloc()				stdio
+	- Xfree()				stdio
+
+NewDatabase()					stdio
+	- Xmalloc()				stdio
+	- _XCreateMutex()			stdio
+	- _XrmInitParseInfo()			stdio
+
+GetDatabase()					stdio rpath
+	- Xmalloc()				stdio
+	- *->methods->mbinit			""
+	- next_char()				""
+	- is_space()				""
+	- is_simple()				""
+	- next_mbchar()				""
+	- is_nonpcs()				""
+	- GetIncludeFile()			stdio rpath
+	- _XrmInternalStringToQuark()		stdio
+	- Xfree()				stdio
+	- is_separator()			""
+	- is_normal()				""
+	- is_special()				""
+	- is_EOL()				""
+	- Xrealloc()				stdio
+	- *->methods->mbfinish			""
+	- PutEntry()				stdio
+
+DestroyLTable()
+	- Xfree()			stdio
+
+DestroyNTable()				stdio
+	- NodeBuckets()			""
+	- DestroyLTable()		stdio
+	- Xfree()			stdio
+
+XrmStringToNameList()			stdio
+	- XrmStringToQuarkList()	stdio
+
+XrmStringToClassList()			stdio
+	- XrmStringToQuarkList()	stdio
+
+XrmQGetResource()			stdio
+	- _XLockMutex()			stdio
+	- GetNEntry()			""
+	- _XUnlockMutex()		stdio
+	- GetLooseVEntry()		""
+	- GetVEntry()			""
+
+XrmQuarkToString()			stdio
+	- _XLockMutex()			stdio
+	- NAME()			""
+	- _XUnlockMutex()		stdio
+
+*->generic_event_copy_vec[]		""	***
+	// set by XESetCopyEventCookie()
+
+_XOpenFile(MODE)
+	- open(2|MODE)			rpath and/or wpath and/or cpath
+
+_XCreateMutex()
+	- xmutex_malloc()		stdio
+	- xmutex_init()			stdio
+	- xmutex_set_name()		stdio
+
+_XrmInitParseInfo()			stdio
+	- _XOpenLC()			stdio rpath
+	*XLCd->methods->init_parse_info
+		- _XrmDefaultInitParseInfo()	stdio
+
+*->methods->mbinit			""
+	// set in NewDatabase()	
+	- c_mbnoop()			""
+
+next_char()				""
+
+next_mbchar()				""
+	- *db->methods->mbchar		""
+
+is_space()				""
+is_simple()				""
+is_nonpcs()				""
+is_seperator()				""
+is_normal()				""
+is_special()				""
+is_EOL()				""
+
+GetIncludeFile()			stdio rpath
+	- ReadInFile()			stdio rpath
+	- GetDatabase()			stdio rpath
+	- Xfree()			stdio
+
+_XrmInternalStringToQuark()		stdio
+	- HASH()			""
+	- _XLockMutex()			stdio
+	- REHASHVAL()			""
+	- REHASH()			""
+	- _XUnlockMutex()		stdio
+	- Xrealloc()			stdio
+	- permalloc()			stdio
+
+XrmStringToQuark()			stdio
+	- _XrmInternalStringToQuark()	stdio
+
+*->methods->mbfinish			""
+	// set in NewDatabase()
+	c_mbnoop()			""
+
+PutEntry()				stdio
+	- NEWTABLE()			stdio
+	- LeafHash()			""
+	- RepType()			""
+	- Xfree()			stdio
+	- RawValue()			""
+	- Xmalloc()			stdio
+	- GROW()			stdio
+
+NodeBuckets()				""
+
+XrmStringToQuarkList()			stdio
+	- is_EOF()			""
+	- is_binding()			""
+	- _XrmInternalStringToQuark()	stdio
+
+GetNEntry()			""
+	- GTIGHTLOOSE()		""
+	- GLOOSE()		""
+	- GetLooseVEntry()	""
+
+GetLooseVEntry()		""
+	- VLOOSE()		""
+	- StringValue()		""
+	- RepType()		""
+	- DataValue()		""
+
+GetVEntry()			""
+	- LeafHash()		""
+	- StringValue()		""
+	- RepType()		""
+	- DataValue()		""
+
+NAME()				""
+
+xmutex_malloc()			stdio
+xmutex_init()			stdio
+xmutex_set_name			stdio
+
+_XOpenLC()			stdio rpath
+	- Xmalloc()		stdio
+	- _XlcMapOSLocaleName()	stdio
+	- _XLockMutex()		stdio
+	- _XlcInitLoader()	stdio 
+	- _XUnlockMutex()	stdio
+	- Xfree()		stdio
+
+_XrmDefaultInitParseInfo()	stdio
+	- XLC_PUBLIC()		""
+	- Xmalloc()		stdio
+	- _XlcOpenConverter()	stdio
+	- Xfree()		stdio
+
+*db->methods->mbchar		""
+	// set in NewDatabase()
+	- c_mbchar()		""
+
+permalloc()
+	- Xmalloc()		stdio
+
+NEWTABLE()			stdio
+	- Xmalloc()		stdio
+	- NodeBuckets()		""
+	- Xfree()		stdio
+
+LeafHash()			""
+RepType()			""
+
+RawValue()			""
+	- StringValue()		""
+	- DataValue()		""
+
+GROW()				stdio
+	- GrowthPred()		stdio
+	- GrowTable()		stdio
+
+is_EOF()			""
+is_binding()			""
+
+GTIGHTLOOSE()			""
+	- *looseleaf()		""
+
+GLOOSE()			""
+	- *looseleaf()		""
+	- NFIND()		""
+
+VLOOSE()			""
+	- LeafHash()		""
+
+StringValue()			""
+
+DataValue()			""
+
+_XlcMapOSLocaleName()		stdio
+
+_XlcInitLoader()		stdio
+	- _XlcAddLoader()	stdio
+
+XLC_PUBLIC()			""
+
+_XlcOpenConverter()		stdio
+	- XrmStringToQuark()	stdio
+	- get_converter()	stdio
+	- open_indirect_converter()	stdio
+
+GrowthPred()			stdio
+	- GrowTable()		stdio
+
+GrowTable()			stdio
+	- GrowthPred()		stdio
+	- Xcalloc()		stdio
+	- MoveValues()		stdio
+	- MoveTables()		stdio
+
+*looseleaf()			""
+	- AppendLooseLEntry()	""
+	- GetLooseVEntry()	""
+
+NFIND()				""
+	- NodeHash()		""
+
+LeafHash()			""
+
+_XlcAddLoader()			stdio
+	- _XlcRemoveLoader()	stdio
+	- Xmalloc()		stdio
+
+get_converter()			stdio
+	- *XlcConverterList->converter	stdio
+
+open_indirect_converter()
+	- XrmStringToQuark()	stdio
+	- Xmalloc()		stdio
+	- Xcalloc()		stdio
+	- get_converter()	stdio
+	- close_indirect_converter()	stdio
+
+MoveValues()			stdio
+	- LeafHash()		""
+	- Xfree()		stdio
+
+MoveTables()			stdio
+	- NodeBuckets()		""
+	- NodeHash()		""
+	- Xfree()		stdio
+
+AppendLooseLEntry()		""
+
+NodeHash()			""
+	- NodeBuckets()		""
+
+_XlcRemoveLoader()		stdio
+	- Xfree()		stdio
+
+close_indirect_converter()	stdio
+	- close_converter()	stdio 
+	- Xfree()		stdio
+
+close_converter() (xlibi18n)	stdio
+	*XlcConv->methods->close
+		close_converter() stdio
+
+
+close_converter() (conv)	stdio
+
+*XlcConverterList->converter	stdio
+	// set by _XlcSetConverter()
+        open_cstoct		stdio
+        open_cstombs		stdio
+        open_cstostr		stdio
+        open_cstoutf8		stdio
+        open_cstowcs		stdio
+        open_cttocs		stdio
+        open_iconv_cstombs	stdio
+        open_iconv_mbstocs	stdio
+        open_iconv_mbstofcs	stdio
+        open_iconv_mbstostr	stdio
+        open_iconv_mbstowcs	stdio
+        open_iconv_mbtocs	stdio
+        open_iconv_strtombs	stdio	
+        open_iconv_wcstombs	stdio
+        open_identity		stdio
+        open_mbstocs		stdio
+        open_mbstocts		stdio
+        open_mbstostr		stdio
+        open_mbstowcs		stdio
+        open_stdc_cstowcs	stdio
+        open_stdc_ctstowcs	stdio
+        open_stdc_mbstowcs	stdio
+        open_stdc_strtowcs	stdio
+        open_stdc_wcstocsa	stdio	
+        open_stdc_wcstocts	stdio
+        open_stdc_wcstombs	stdio
+        open_stdc_wcstostr	stdio
+        open_stdc_wctocs	stdio
+        open_strtocs		stdio
+        open_strtombs		stdio
+        open_strtoutf8		stdio
+        open_strtoutf8		stdio
+        open_strtowcs		stdio
+        open_ucstocs1		stdio
+        open_ucstoutf8		stdio
+        open_utf8tocs		stdio
+        open_utf8tocs1		stdio
+        open_utf8tofcs		stdio
+        open_utf8tostr		stdio
+        open_utf8tostr		stdio
+        open_utf8towcs		stdio
+        open_wcstocs		stdio
+        open_wcstocs1		stdio
+        open_wcstofcs		stdio
+        open_wcstombs		stdio
+        open_wcstostr		stdio
+{
+		- create_conv()			stdio
+		- lazy_init_all_charsets()	stdio
+		- create_tocs_conv()		stdio
+		- create_tofontcs_conv()	stdio
+		- create_ucstocs_conv()		stdio
+}		
+
+create_conv()			stdio
+	- Xcalloc()		stdio
+	- Xmalloc()		stdio
+	- close_converter()	stdio
+	- XLC_GENERIC()		""
+
+create_tocs_conv()		stdio
+	- lazy_init_all_charsets()	stdio
+	- XLC_GENERIC()		""
+	- Xmalloc()		stdio
+
+create_tofontcs_conv()		stdio
+	- lazy_init_all_charsets()	stdio
+	- _XlcGetResource()	stdio
+	- Xmalloc()		stdio
+	- _XlcGetCharSet()	stdio
+
+create_ucstocs_conv()		stdio
+	- XLC_PUBLIC_PART()	""
+	_XlcCompareISOLatin1()	""
+	- lazy_init_all_charsets()	stdio
+	- Xmalloc()		stdio
+	- create_tocs_conv()	stdio
+
+XLC_GENERIC()			""
+
+lazy_init_all_charsets()	stdio
+	- init_all_charsets()	stdio
+
+init_all_charsets()		stdio
+	- XrmStringToQuark()	stdio
+
+XLC_PUBLIC_PART()		""
+
+_XlcCompareISOLatin1()		""
+	set_toupper()		""
+
+set_toupper()			""
+
+_XlcGetResource()
+	- XLC_PUBLIC_METHODS()	stdio
+	- *XLC_PUBLIC_METHODS()->get_resource	stdio
+
+XLC_PUBLIC_METHODS()				stdio
+	*XLCdPublicMethods->methods->pub
+		- _XlcGetLocaleDataBase()	stdio
+
+_XlcGetLocaleDataBase()		stdio
+	- XLC_PUBLIC()		""
+	- XrmStringToQuark()	stdio
+
+XLC_PUBLIC()			""
+
+_XlcGetCharSet()		stdio
+	- XrmStringToQuark()	stdio
+
+-- XOpenDisplay ends
+
+XSupportsLocale()		stdio
+	- _XlcCurrentLC()	stdio
+
+_XlcCurrentLC()			stdio rpath
+	- _XOpenLC()		stdio rpath
+	- _XCloseLC()		stdio
+
+DefaultScreen()			""
+
+RootWindow()			""
+
+DisplayWidth()			""
+
+DisplayHeight()			""
+
+#drw_create()			stdio rpath (err handle)
+	- ecalloc()		stdio
+	- XCreatePixmap()	stdio rpath
+	- DefaultDepth()	""
+	- XSetLineAttributes()	stdio rpath
+
+#drw_load_fonts()		stdio rpath cpath wpath fattr getpw
+	- die()			stdio
+	- drw_font_xcreate()	stdio rpath cpath wpath fattr getpw
+
+#drw_setscheme()			""
+
+#grabkeyboard()			stdio rpath
+	- XGrabKeyboard		stdio rpath
+	- DefaultRootWindow	""
+
+#readstdin()			stdio
+
+#setup()
+	- drw_clr_create	stdio rpath
+	- XInternAtom		stdio rpath
+	- XineramaQueryScreens	stdio rpath
+	- XGetInputFocus	stdio rpath
+	- XQueryTree		stdio rpath
+	- XGetWindowAttributes	stdio rpath
+	- XQueryPointer		stdio rpath
+	- XCreateWindow		stdio rpath
+	- DefaultDepth		""
+	- DefaultVisual		""
+	- XOpenIM		stdio rpath
+	- XCreateIC		stdio
+	- XMapRaised		stdio rpath
+	- drw_resize		stdio rpath
+	- drawmenu
+
+#drw_clr_create()		stdio rpath
+	- XftColorAllocName	stdio rpath
+	- DefaultVisual		""
+	- DefaultColormap	""
+
+#run()
+	- XNextEvent
+	- XFilterEvent
+	drw_map
+	keypress
+	paste
+	- XRaiseWindow
+
+#drw_resize()			stdio rpath
+	- XFreePixmap		stdio rpath
+	- XCreatePixmap		stdio rpath
+	- DefaultDepth		""
+
+#drawmenu()
+	- drw_setscheme		""
+	- drw_rect		stdio rpath
+	- drw_text
+	- drw_map
+
+#drw_rect()			stdio rpath
+	- XSetForeground	stdio rpath
+	- XFillRectangle	stdio rpath
+	- XDrawRectangle	stdio rpath
+
+#drw_text()	// from here
+	- XSetForeground	stdio rpath
+	- XFillRectangle	stdio rpath
+	- XftDrawCreate
+	- DefaultVisual		""
+	- DefaultColormap	""
+	- XftCharExists		""
+	drw_font_getexts
+	- XftDrawStringUtf8
+	- FcCharSetCreate	stdio
+	- FcCharSetAddChar
+	- FcPatternDuplicate	stdio
+	- FcPatternAddCharSet
+	- FcPatternAddBool	stdio
+	- FcConfigSubstitute	stdio rpath
+	- FcDefaultSubstitute	stdio
+	- XftFontMatch		stdio rpath cpath wpath fattr
+	- FcCharSetDestroy	stdio
+	- FcPatternDestroy	stdio
+	- drw_font_xcreate	stdio rpath cpath wpath fattr getpw
+	drw_font_free
+	- XftDrawDestroy
+
+#drw_map()
+	XCopyArea
+	XSync
+
+XCreatePixmap()			stdio rpath
+	- LockDisplay()		stdio rpath
+	- GetReq()		stdio rpath
+	- XAllocID()		""
+	- UnlockDisplay()	stdio
+	- SyncHandle()		stdio rpath
+
+drw_font_xcreate()			stdio rpath cpath wpath fattr getpw
+	- XftFontOpenName()		stdio rpath cpath wpath fattr
+	- FcNameParse()			stdio
+	- XftFontClose()		stdio rpath getpw
+	- XftFontOpenPattern()		stdio rpath getpw
+	
+
+XftFontOpenName()			stdio rpath cpath wpath fattr
+	- FcNameParse()			stdio
+	- FcPatternPrint()		stdio
+	- XftFontMatch()		stdio rpath cpath wpath fattr
+	- FcPatternDestroy()		stdio
+	- XftFontOpenPattern()		stdio rpath getpw
+	- XftDebug()			stdio
+
+FcNameParse()				stdio
+	- FcPatternCreate()		stdio
+	- FcNameFindNext		stdio
+	- FcPatternAddString		stdio
+	- FcPatternAddDouble		stdio
+	- FcNameGetObjectType		stdio
+	- FcNameConvert			stdio
+	- FcPatternAdd			stdio
+	- FcValueDestroy		stdio
+	- FcNameGetConstant		""
+	- FcPatternAddInteger		stdio
+	- FcPatternAddBool		stdio
+	- FcPatternDestroy		stdio
+
+FcPtrToOffset()		""
+FcRefInit()		""
+
+FcNameFindNext()	stdio
+
+FcNameGetObjectType()				stdio
+	- FcObjectLookupBuiltinIdByName		""
+	- FcObjectLookupOtherTypeByName		stdio
+
+FcNameConvert()			stdio
+	- FcNameConstant	""
+	- FcStrdup		stdio
+	- FcNameBool		""
+	- FcMatrixInit		""
+	- FcNameParseLangSet	stdio
+
+FcNameConstant()		""
+	- FcStrCmpIgnoreCase	""
+
+FcPatternAddString()			stdio
+	- FcPatternObjectAddString	stdio
+
+FcPatternAddDouble()			stdio
+	- FcPatternObjectAddDouble	stdio
+
+FcPatternAdd()				stdio
+	- FcPatternObjectAddWithBinding	stdio
+
+FcValueDestroy()			stdio
+	- FcFree			stdio
+	- FcMatrixFree			stdio
+	- FcCharSetDestroy		stdio
+	- FcLangSetDestroy		stdio
+
+FcPatternAddInteger()			stdio
+	- FcPatternObjectAddInteger	stdio
+
+FcPatternAddBool()			stdio
+	- FcPatternObjectAddBool	stdio
+
+FcPatternDestroy()			stdio
+	- FcRefIsConst			""
+	- FcCacheObjectDereference	stdio
+	- FcRefDec			""
+	- FcPatternElts			stdio
+	- FcValueListDestroy		stdio
+	- FcPatternEltValues		stdio
+
+FcObjectLookupBuiltinIdByName()		""
+	- FcObjectTypeLookup		""
+
+FcObjectLookupOtherTypeByName()			stdio
+	- _FcObjectLookupOtherTypeByName()	stdio
+
+_FcObjectLookupOtherTypeByName()	stdio
+	- fc_atomic_ptr_get		""
+	- FcStrdup			stdio
+	- fc_atomic_ptr_cmpexch		""
+
+
+FcStrdup()		stdio
+
+FcNameBool()		""
+	- FcToLower	""
+
+FcMatrixInit()		""
+
+FcNameParseLangSet()		stdio
+	- FcLangSetCreate	stdio
+	- FcLangSetAdd		stdio
+	- FcLangSetDestroy	stdio
+
+FcStrCmpIgnoreCase()		""
+	- FcStrCaseWalkerInit	""
+	- FcStrCaseWalkerNext	""
+
+FcPatternObjectAddString()	stdio
+	- FcPatternObjectAdd	stdio
+
+FcPatternObjectAddDouble()	stdio
+	- FcPatternObjectAdd	stdio
+
+FcPatternObjectAddWithBinding()		stdio
+	- FcRefIsConst		""
+	- FcValueListCreate	stdio
+	- FcValueSave		stdio
+	- FcObjectValidType	""
+	- FcValuePrintFile	""
+	- FcObjectName		""
+	- FcPatternObjectInsertElt	stdio
+	- FcValueDestroy		stdio 
+
+FcFree()	stdio
+FcMatrixFree()	stdio
+
+FcCharSetDestroy()			stdio
+	- FcRefIsConst			""
+	- FcCacheObjectDereference	stdio
+	- FcRefDec			""
+	- FcCharSetLeaf			""
+	- FcCharSetLeaves		""
+	- FcCharSetNumbers		""
+
+FcLangSetDestroy()			stdio
+	- FcStrSetDestroy		stdio
+
+FcPatternObjectAddInteger()		stdio
+	- FcPatternObjectAdd		stdio
+
+FcPatternObjectAddBool()		stdio
+	- FcPatternObjectAdd		stdio
+
+FcRefIsConst()		""
+
+FcCacheObjectDereference()		stdio
+	- FcCacheFindByAddrUnlocked	""
+	- FcDirCacheDisposeUnlocked	stdio
+	- lock_cache			stdio
+	- unlock_cache			stdio
+
+FcRefDec()		""
+
+FcPatternElts()		stdio
+
+FcValueListDestroy()		stdio
+	- FcFree		stdio
+	- FcMatrixFree		stdio
+	- FcValueListNext	""
+
+FcPatternEltValues()	stdio
+
+FcObjectTypeLookup()		""
+	- FcObjectTypeHash	""
+
+FcLangSetCreate()		stdio
+
+FcLangSetAdd()			stdio
+	- FcLangSetIndex	""
+	- FcLangSetBitSet	""
+	- FcStrSetCreate	""
+	- FcStrSetAdd		stdio
+
+FcLangSetDestroy()		stdio
+	- FcStrSetDestroy	stdio
+
+FcStrCaseWalkerInit()		""
+
+FcStrCaseWalkerNext()		""
+	- FcStrCaseWalkerLong	""
+
+FcPatternObjectAdd()				stdio
+	- FcPatternObjectAddWithBinding		stdio
+
+FcValueListCreate()	stdio
+
+FcValueSave()		stdio
+	- FcStrdup	stdio
+	- FcMatrixCopy	stdio
+	- FcCharSetCopy	stdio
+	- FcLangSetCopy	stdio
+
+FcObjectValidType()		""
+	- FcObjectFindById	""
+
+FcValuePrintFile()			""
+	- _FcValuePrintFile		""
+
+FcObjectName()				""
+	- FcObjectLookupOtherNameById	""
+
+FcPatternObjectInsertElt()		stdio
+	- FcPatternObjectPosition	stdio
+	- FcPatternElts			stdio
+	- FcPtrToOffset			""
+
+FcCharSetLeaf()				""
+	- FcCharSetLeaves		""
+	- FcOffsetToPtr			""
+
+FcCharSetLeaves()			""
+	- FcOffsetMember		""
+
+FcCharSetNumbers()			""
+	- FcOffsetMember		""
+
+FcCacheFindByAddrUnlocked()		""
+
+FcDirCacheDisposeUnlocked()		stdio
+
+lock_cache()				stdio
+	- fc_atomic_ptr_get		""
+	- FcMutexInit			stdio
+	- fc_atomic_ptr_cmpexch		""
+	- FcMutexFinish			stdio
+	- FcMutexLock			stdio
+	- FcRandom			stdio
+
+unlock_cache()				stdio
+	- FcMutexUnlock			stdio
+
+FcValueListNext()		""
+	- FcPointerMember	""
+
+FcLangSetIndex()		""
+	- FcToLower		""
+	- FcStrCmpIgnoreCase	""
+
+FcLangSetBitSet()	""
+
+FcStrSetCreate()	""
+	- FcRefInit	""
+
+FcStrSetAdd()			stdio
+	- _FcStrSetAppend	stdio
+	- FcStrFree		stdio
+
+FcStrSetDestroy()	stdio
+	- FcRefIsConst	""
+	- FcRefDec	""
+	- FcStrFree	stdio
+
+FcStrCaseWalkerLong()		""
+	- FcCaseFoldUpperCount	""
+	- FcUcs4ToUtf8		""
+
+FcPatternObjectAddWithBinding()		stdio
+	- FcObjectValidType	""
+	- FcValueListCreate	stdio
+	- FcRefIsConst		""
+	- FcObjectName		""
+	- FcValuePrintFile	""
+	- FcPatternObjectInsertElt	stdio
+	- FcValueDestroy		stdio
+
+FcMatrixCopy()		stdio
+
+FcCharSetCopy()				stdio
+	- FcRefIsConst			""
+	- FcRefInc			""
+	- FcCacheObjectReference	stdio
+
+FcLangSetCopy()				stdio
+	- FcLangSetCreate		stdio
+	- FcStrSetCreate		""
+	- FcStrListCreate		""
+	- FcStrListNext			""
+	- FcStrSetAdd			stdio
+	- FcStrListDone			stdio
+	- FcLangSetDestroy		stdio
+
+FcObjectFindById()			""
+	- FcObjectLookupOtherTypeById	""
+
+_FcValuePrintFile()		""
+	- FcCharSetPrint	""
+
+FcObjectLookupOtherNameById()	""
+	- fc_atomic_ptr_get	""
+
+FcPatternObjectPosition()	stdio
+	- FcPatternElts		stdio
+
+FcOffsetToPtr()			""
+
+FcOffsetMember()		""
+	- FcOffsetToPtr		""
+
+fc_atomic_ptr_get()		""
+
+fc_atomic_ptr_cmpexch()		""
+
+FcMutexInit()			stdio
+	- fc_mutex_impl_init	stdio
+
+FcMutexFinish()			stdio
+	- fc_mutex_impl_finish	stdio
+
+FcMutexLock()			stdio
+	- fc_mutex_impl_lock	stdio
+
+FcMutexUnlock()			stdio
+	- fc_mutex_impl_unlock	stdio
+
+FcRandom()		stdio
+
+FcPointerMember()			""
+	- FcIsEncodedOffset		""
+	- FcEncodedOffsetMember		""
+
+FcToLower()		""
+
+_FcStrSetAppend()	stdio
+	- FcStrFree	stdio
+
+FcStrFree()		stdio
+
+FcCaseFoldUpperCount()	""
+
+FcUcs4ToUtf8()		""
+
+FcRefInc()			""
+	- fc_atomic_int_add	""
+
+FcCacheObjectReference()	stdio
+	- FcCacheFindByAddr	stdio
+	- FcRefInc		""
+
+FcStrListCreate()		""
+	- FcStrSetReference	""
+
+FcStrListNext()		""
+
+FcStrListDone()			stdio
+	- FcStrSetDestroy	stdio
+
+FcObjectLookupOtherTypeById()	""
+	- fc_atomic_ptr_get	""
+
+FcCharSetPrint()		""
+	- FcCharSetLeaves	""
+	- FcCharSetNumbers	""
+	- FcOffsetToPtr		""
+
+fc_mutex_impl_init()		stdio
+fc_mutex_impl_finish()		stdio
+fc_mutex_impl_lock()		stdio
+fc_mutex_impl_unlock()		stdio
+
+FcIsEncodedOffset()		""
+
+FcEncodedOffsetMember()		""
+	- FcOffsetToPtr		""
+	- FcOffsetDecode	""
+
+fc_atomic_int_add()		""
+
+FcCacheFindByAddr()			stdio
+	- lock_cache			stdio
+	- FcCacheFindByAddrUnlocked	""
+	- unlock_cache			stdio
+
+FcStrSetReference()		""
+	- FcRefIsConst		""
+	- FcRefInc		""
+
+FcOffsetDecode()		""
+
+FcNameGetConstant()		""
+	- FcStrCmpIgnoreCase	""
+
+FcPatternPrint()		stdio
+	- FcPatternElts		stdio
+	- FcObjectName		""
+	- FcValueListPrint	stdio
+	- FcPatternEltValues	stdio
+
+XftFontMatch()			stdio rpath cpath wpath fattr
+	- XftInit		stdio rpath cpath wpath fattr
+	- FcPatternDuplicate	stdio
+	- XftDebug		stdio
+	- FcPatternPrint	stdio
+	- FcConfigSubstitute	stdio rpath
+	- XftDefaultSubstitute	stdio rpath getpw
+	- FcPatternPrint	stdio
+	- FcPatternDestroy	stdio
+
+XftFontOpenPattern()		stdio rpath getpw
+	- XftFontInfoFill	stdio rpath getpw
+	- XftFontOpenInfo	stdio rpath
+	- XftFontInfoEmpty	stdio
+
+XftDebug()		stdio
+
+FcValueListPrint()		stdio
+	- FcValueListNext	""
+	- FcValuePrint		""
+	- FcValueCanonicalize	""
+	- FcValueBindingPrint	stdio
+
+FcValueCanonicalize()		""
+	- FcValueString		""
+	- FcValueCharSet	""
+	- FcValueLangSet	""
+
+FcValueBindingPrint()		stdio
+
+FcValueString
+	- FcPointerMember	""
+
+FcValueCharSet
+	- FcPointerMember	""
+
+FcValueLangSet
+	- FcPointerMember	""
+
+XftInit()			stdio rpath cpath wpath fattr
+	- FcInit		stdio rpath cpath wpath fattr
+	- _XftNameInit		""
+
+FcPatternDuplicate()			stdio
+	- FcPatternCreate		stdio
+	- FcPatternElts			stdio
+	- FcPatternEltValues		stdio
+	- FcValueListNext		""
+	- FcPatternObjectAddWithBinding	stdio
+	- FcValueCanonicalize		""
+
+FcConfigSubstitute()			stdio rpath
+	- FcConfigSubstituteWithPat	stdio rpath
+
+XftDefaultSubstitute()			stdio rpath getpw
+	- FcPatternGet			stdio
+	- FcPatternAddBool		stdio
+	- XftDefaultGetBool		stdio rpath getpw
+	- XftDefaultHasRender		stdio rpath getpw
+	- XRenderQuerySubpixelOrder	stdio rpath
+	- FcPatternAddInteger		stdio
+	- XftDefaultGetInteger		stdio rpath getpw
+	- FcPatternAddDouble		stdio
+	- XftDefaultGetDouble		stdio rpath getpw
+	- FcDefaultSubstitute		stdio
+
+XftFontInfoFill()		stdio rpath getpw
+	- _XftDisplayInfoGet	stdio rpath getpw
+	- FcPatternGetString	stdio
+	- FcPatternGetInteger	stdio
+	- _XftGetFile		stdio
+	- FcPatternGetFTFace	stdio
+	- _XftGetFaceFile	stdio
+	- FcPatternGetDouble	stdio
+	- XftDebug		stdio
+	- FcPatternGetBool	stdio
+	- FcPatternGetMatrix	stdio
+	- _XftReleaseFile	stdio
+
+XftFontOpenInfo()			stdio rpath
+	- XftFontInfoEqual		stdio
+	- FcPatternDestroy		stdio
+	- XftDebug			stdio
+	- _XftLockFile			stdio rpath
+	- _XftSetFace			stdio
+	- FcPatternGetCharSet		stdio
+	- FcCharSetCopy			stdio
+	- FcConfigGetBlanks		stdio rpath
+	- XRenderFindStandardFormat	stdio rpath
+	- FcCharSetCount		""
+	- _XftHashSize			""
+	- XftMemAlloc			stdio
+	- FT_Vector_Transform		""
+	- _XftUnlockFile		stdio
+	- FcCharSetDestroy		stdio
+
+XftFontInfoEmpty()		stdio
+	- _XftReleaseFile	stdio
+
+FcInit()			stdio rpath wpath cpath fattr
+	- FcConfigInit		stdio rpath wpath cpath fattr
+
+_XftNameInit()				""
+	- FcNameRegisterObjectTypes	""
+
+FcConfigSubstituteWithPat()		stdio rpath
+	- FcConfigGetCurrent		stdio rpath
+	- FcGetDefaultLangs		stdio
+	- FcStrSetDestroy		stdio
+	- FcStrListNext			""
+	- FcPatternObjectAddWithBinding	stdio
+	- FcPatternObjectGet		stdio
+	- FcPatternObjectAddString	stdio
+	- FcDebug			""
+	- FcPatternPrint		stdio
+	- FC_OBJ_ID			""
+	- FcTestPrint			""
+	- FcPatternObjectFindElt	stdio
+	- FcConfigMatchValueList	stdio
+	- FcConfigValues		stdio
+	- FC_OP_GET_OP			""
+	- FcConfigAdd			stdio
+	- FcConfigDel			stdio
+	- FcConfigPatternDel		stdio
+	- FcConfigPatternAdd		stdio
+	- FcValueListDestroy		stdio
+	- FcConfigPatternCanon		stdio
+
+FcPatternGet()				stdio
+	- FcPatternObjectGet		stdio 
+
+XftDefaultGetBool()			stdio rpath getpw
+	- _XftDefaultGet		stdio rpath getpw
+
+XftDefaultHasRender()			stdio rpath getpw
+	- _XftDisplayInfoGet		stdio rpath getpw
+
+XRenderQuerySubpixelOrder()		stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderHasExtension		""
+	- XRenderQueryFormats		stdio rpath
+
+XftDefaultGetInteger()			stdio rpath getpw
+	- _XftDefaultGet		stdio rpath getpw
+
+XftDefaultGetDouble()			stdio rpath getpw
+	- _XftDefaultGet		stdio rpath getpw
+
+FcDefaultSubstitute()			stdio
+	- FcPatternObjectGet		stdio
+	- FcPatternObjectAddInteger	stdio
+	- FcPatternObjectAddBool	stdio
+	- FcPatternObjectGetDouble	stdio
+	- FcPatternObjectDel		stdio
+	- FcPatternObjectAddDouble	stdio
+	- FcPatternObjectAddString	stdio
+	- FcPatternObjectAddWithBinding	stdio
+	- FcGetPrgname			stdio
+
+_XftDisplayInfoGet()			stdio rpath getpw
+	- XAddExtension			stdio rpath
+	- XESetCloseDisplay		stdio rpath
+	- XRenderQueryExtension		stdio rpath
+	- XRenderFindVisualFormat	stdio rpath
+	- XRenderQueryVersion		stdio rpath
+	- XRenderFindFormat		stdio rpath
+	- XftDebug			stdio
+	- DefaultVisual			""
+	- DefaultScreen			""
+	- XftDefaultGetInteger		stdio rpath getpw			// recurse
+
+FcPatternGetString()			stdio
+	- FcPatternObjectGetString	stdio
+
+FcPatternGetInteger()			stdio
+	- FcPatternObjectGetInteger	stdio
+
+_XftGetFile()			stdio
+	- XftInitFtLibrary	stdio
+	- XftDebug		stdio
+	- XftMemAlloc		stdio
+
+FcPatternGetFTFace()		stdio
+	- FcPatternGet		stdio
+
+_XftGetFaceFile()		stdio
+	- XftMemAlloc		stdio
+
+FcPatternGetDouble()				stdio
+	- FcPatternObjectGetDouble		stdio
+
+FcPatternGetBool()			stdio
+	- FcPatternGet			stdio
+
+FcPatternGetMatrix()		stdio
+	- FcPatternGet		stdio
+
+_XftReleaseFile()		stdio
+	- _XftLockError		stdio
+	- FT_Done_Face		stdio
+	- XftMemFree		stdio
+
+XftFontInfoEqual()		stdio 
+
+_XftLockFile()			stdio rpath
+	- XftDebug		stdio
+	- FT_New_Face		stdio rpath
+	- _XftUncacheFiles	stdio
+
+_XftSetFace()			stdio
+	- XftDebug		stdio
+	- FT_Set_Char_Size	""
+	- FT_Matrix_Equal	""
+	- FT_Set_Transform	""
+
+FcPatternGetCharSet()		stdio
+	- FcPatternGet		stdio
+
+FcConfigGetBlanks()		stdio rpath
+	- FcConfigGetCurrent	stdio rpath
+
+XRenderFindStandardFormat()	stdio rpath
+	- XRenderFindFormat	stdio rpath
+
+FcCharSetCount()		""
+	- FcCharSetIterStart	""
+	- FcCharSetIterNext	""
+	- FcCharSetPopCount	""
+
+_XftHashSize()			""
+	- _XftIsPrime		""
+
+XftMemAlloc()			stdio
+	- XftDebug		stdio
+	- XftMemReport		stdio
+
+FT_Vector_Transform()		""
+	- FT_MulDiv		""
+	- FT_BASE_DEF		""
+	- FT_Vector_NormLen	""
+	- FT_MOVE_SIGN		""
+	- FT_MSB		""
+
+_XftUnlockFile()		stdio
+	- _XftLockError		stdio
+
+FcConfigInit()			stdio rpath cpath wpath fattr
+	- FcConfigEnsure	stdio rpath cpath wpath fattr
+
+FcNameRegisterObjectTypes()	""	// Deprecated and does nothing, but it's called? XXX check this
+
+FcConfigGetCurrent()			stdio rpath cpath wpath fattr
+	- FcConfigEnsure		stdio rpath cpath wpath fattr
+
+FcGetDefaultLangs()		stdio
+	- fc_atomic_ptr_get	""
+	- FcStrSetCreate	""
+	- FcStrSetAddLangs	stdio
+	- FcStrSetAdd		stdio
+	- FcRefSetConst		""
+	- fc_atomic_ptr_cmpexch	""
+	- FcRefInit		""
+	- FcStrSetDestroy	stdio
+
+FcPatternObjectGet()			stdio
+	- FcPatternObjectFindElt	stdio
+	- FcPatternEltValues		stdio
+	- FcValueListNext		""
+	- FcValueCanonicalize		""
+
+FcDebug()		""
+
+FC_OBJ_ID()		""
+
+FcTestPrint()		""
+	- FcObjectName	""
+	- FcOpPrint	""
+	- FcExprPrint	""
+
+FcPatternObjectFindElt()		stdio
+	- FcPatternObjectPosition	stdio
+	- FcPatternElts			stdio
+
+FcConfigMatchValueList()	stdio
+	- FC_OP_GET_OP		""
+	- FcConfigEvaluate	stdio
+	- FcValueListNext	""
+	- FcConfigCompareValue	stdio
+	- FcValueDestroy	stdio
+
+FcConfigValues()		stdio
+	- FC_OP_GET_OP		""
+	- FcConfigEvaluate	stdio
+	- FcConfigValues	// recurse
+	- FcValueListNext	""
+
+FC_OP_GET_OP()			""
+
+FcConfigAdd()				stdio
+	- FcValueListNext		""
+	- FcObjectValidType		""
+	- FcObjectName			""
+	- FcValuePrintFile		""
+	- FcValueListPrintWithPosition	stdio
+	- FcValueListPrint		stdio
+	- FcDebug			""
+
+FcConfigDel()				stdio
+	- FcValueListDestroy		stdio
+
+FcConfigPatternDel()			stdio
+	- FcPatternObjectFindElt	stdio
+	- FcConfigDel			stdio
+
+FcConfigPatternAdd()			stdio
+	- FcPatternObjectInsertElt	stdio
+	- FcConfigAdd			stdio
+
+FcConfigPatternCanon()			stdio
+	- FcPatternObjectFindElt	stdio
+	- FcPatternObjectDel		stdio
+
+_XftDefaultGet()			stdio rpath getpw
+	- _XftDisplayInfoGet		stdio rpath getpw
+	- _XftDefaultInit		stdio rpath getpw
+	- FcPatternGet			stdio
+
+XRenderFindDisplay()			stdio rpath
+	- XRenderExtFindDisplay		stdio
+	- XRenderExtAddDisplay		stdio rpath
+
+RenderHasExtension()		""
+
+XRenderQueryFormats()		stdio rpath
+	- XRenderFindDisplay	stdio rpath
+	- RenderCheckExtension	""
+	- LockDisplay		stdio rpath
+	- UnlockDisplay		stdio
+	- GetReq		stdio rpath
+	- _XReply		stdio rpath
+	- DeqAsyncHandler	""
+	- SyncHandle		stdio rpath
+	- Xmalloc		stdio
+	- Xfree			stdio
+	- _XEatDataWords	stdio
+	- _XRead		stdio
+	- _XRenderFindFormat	""
+	- _XRenderFindVisual	""
+
+FcPatternObjectGetDouble()	stdio
+	- FcPatternObjectGet	stdio
+
+FcPatternObjectDel()			stdio
+	- FcPatternObjectFindElt	stdio
+	- FcValueListDestroy		stdio
+	- FcPatternElts			stdio
+
+FcGetPrgname()				stdio
+	- fc_atomic_ptr_get		""
+	- FcStrdup			stdio
+	- fc_atomic_ptr_cmpexch		""
+	
+XAddExtension()				stdio rpath
+	- LockDisplay			stdio rpath
+	- Xcalloc			stdio
+	- UnlockDisplay			stdio
+
+XESetCloseDisplay()			stdio rpath
+	- XLookupExtension		""
+	- LockDisplay			stdio rpath
+	- UnlockDisplay			stdio
+
+XRenderQueryExtension()			stdio rpath
+	- RenderHasExtension		""
+	- XRenderFindDisplay		stdio rpath
+
+XRenderFindVisualFormat()		stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderCheckExtension		""
+	- XRenderQueryFormats		stdio rpath
+
+XRenderQueryVersion()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderHasExtension		""
+	- XRenderQueryFormats		stdio rpath
+
+XRenderFindFormat()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderCheckExtension		""
+	- XRenderQueryFormats		stdio rpath
+
+DefaultVisual()				""
+	- ScreenOfDisplay		""
+
+FcPatternObjectGetString()		stdio
+	- FcPatternObjectGet		stdio
+
+FcPatternObjectGetInteger()		stdio
+	- FcPatternObjectGet		stdio
+
+XftInitFtLibrary()		stdio
+	- FT_Init_FreeType	stdio
+
+_XftLockError()			stdio
+
+FT_Done_Face()			stdio
+	- FT_ERR		""
+	- FT_List_Find		""
+	- FT_List_Remove	""
+	- destroy_face		stdio
+
+XftMemFree()			stdio
+	- XftDebug		stdio
+	- XftMemReport		stdio
+
+FT_New_Face()			stdio rpath
+	- FT_THROW		""
+	- FT_Open_Face		stdio rpath
+
+_XftUncacheFiles()		stdio
+	- _XftNumFiles		""
+	- _XftNthFile		""
+	- XftDebug		stdio
+	- FT_Done_Face		stdio
+
+FT_Set_Char_Size()		""
+	- FT_Request_Size	""
+
+FT_Matrix_Equal()		""
+
+FT_Set_Transform()		""
+
+FcCharSetIterStart()		""
+	- FcCharSetIterSet	""
+
+FcCharSetIterNext()		""
+	- FcCharSetNumbers	""
+	- FcCharSetLeaf		""
+
+FcCharSetPopCount()		""
+
+_XftIsPrime()			""
+	- _XftSqrt		""
+
+XftMemReport()			stdio
+
+FT_MulDiv()			""
+	- FT_MOVE_SIGN		""
+
+FT_BASE_DEF()			""
+
+FT_Vector_NormLen()		""
+	- FT_MOVE_SIGN		""
+	- FT_MSB		""
+
+FT_MOVE_SIGN()			""
+
+FT_MSB()			""
+
+FcConfigEnsure()			stdio rpath cpath wpath fattr
+	- fc_atomic_ptr_get		""
+	- FcInitLoadConfigAndFonts	stdio rpath cpath wpath fattr
+	- fc_atomic_ptr_cmpexch		""
+	- FcConfigDestroy		stdio
+
+FcStrSetAddLangs()		stdio
+	- FC_MIN		""
+	- FcLangNormalize	stdio
+	- FcStrSetAdd		stdio
+	- FcStrFree		stdio
+
+FcRefSetConst()			""
+
+FcOpPrint()			""
+	- FC_OP_GET_OP		""
+	- FcOpFlagsPrint	""
+
+FcExprPrint()			""
+	- FcExprPrint		// recurse
+	- FC_OP_GET_OP		""
+	- FcLangSetPrint	""
+	- FcObjectName		""
+	- FcOpFlagsPrint	""
+
+FcConfigEvaluate()		stdio
+	- FC_OP_GET_OP		""
+	- FcValueSave		stdio
+	- FcConfigPromote	""
+	- FcConfigEvaluate	// recurse
+	- FcPatternObjectGet	stdio
+	- FcNameConstant	""
+	- FcValueDestroy	stdio
+	- FcStrPlus		stdio
+	- FcStrdup		stdio
+	- FcStrFree		stdio
+	- FcMatrixMultiply	""
+	- FcCharSetUnion	stdio
+	- FcCharSetSubtract	stdio
+	- FcLangSetUnion	stdio
+	- FcDoubleCeil		""
+	- FcDoubleRound		""
+	- FcDoubleTrunc		""
+
+FcConfigCompareValue()			stdio
+	- FcConfigPromote		""
+	- FcStrCmpIgnoreBlanksAndCase	""
+	- FcStrCmpIgnoreCase		""
+	- FcMatrixEqual			""
+	- FcCharSetIsSubset		""
+	- FcCharSetEqual		""
+	- FcLangSetContains		stdio
+
+FcValueListPrintWithPosition()		stdio
+	- FcValuePrintWithPosition	""
+	- FcValueCanonicalize		""
+	- FcValueListNext		""
+	- FcValueBindingPrint		stdio
+
+_XftDefaultInit()			stdio rpath getpw
+	- FcPatternCreate		stdio
+	- _XftDefaultInitDouble		stdio rpath getpw
+	- _XftDefaultInitBool		stdio rpath getpw
+	- _XftDefaultInitInteger	stdio rpath getpw
+	- FcPatternDestroy		stdio
+
+XRenderExtFindDisplay()			stdio
+	- _XLockMutex			stdio
+	- _XUnlockMutex			stdio
+
+XRenderExtAddDisplay()			stdio rpath
+	- Xmalloc			stdio
+	- XRenderHasDepths		stdio rpath 
+	- XInitExtension		stdio rpath
+	- XESetCloseDisplay		stdio rpath
+	- XAddExtension			stdio rpath
+	- XFree				stdio 
+	- _XLockMutex			stdio
+	- _XUnlockMutex			stdio
+
+RenderCheckExtension()		""
+	- RenderHasExtension	""
+
+RenderHasExtension()		""
+
+DeqAsyncHandler()		""
+	- _XDeqAsyncHandler	""
+
+_XRead()				stdio
+	- throw_extlib_fail_assert	stdio
+	- _XFreeReplyData		stdio
+
+_XRenderFindFormat()			""
+
+_XRenderFindVisual()			""
+	- _XVIDtoVisual			""
+
+XLookupExtension()			""
+
+FT_ERR()		""
+	- FT_ERR_CAT	""
+
+FT_List_Find()		""
+
+FT_List_Remove()	""
+
+FT_FREE()		stdio
+	- FT_MEM_FREE	stdio
+
+destroy_face()				stdio
+	- FT_Done_GlyphSlot		stdio
+	- FT_List_Finalize		stdio
+	- destroy_charmaps		stdio
+	- *FT_Driver_Class->done_face	stdio
+	- FT_Stream_Free		stdio
+	- FT_FREE			stdio
+
+FT_THROW()			""
+	- FT_ERR_CAT		""
+
+FT_Open_Face()			stdio rpath
+	- FT_THROW		""
+	- FT_BOOL		""
+	- FT_Stream_New		stdio rpath
+	- FT_DRIVER		""
+	- FT_MODULE_IS_DRIVER	""
+	- open_face		stdio
+	- FT_Stream_Free	stdio
+	- FT_ERR		""
+	- FT_ERR_NEQ		""
+	- FT_TRACE4		""
+	- FT_NEW		""
+	- FT_List_Add		""
+	- FT_New_GlyphSlot	stdio
+	- FT_New_Size		stdio
+	- FT_IS_SCALABLE	""
+	- FT_HAS_VERTICAL	""
+	- FT_HAS_FIXED_SIZES	""
+	- FT_Done_Face		stdio
+	- destroy_face		stdio
+
+_XftNumFiles()		""
+	
+
+_XftNthFile()		""
+
+FT_Request_Size()	""
+	- FT_THROW	""
+
+FcCharSetIterSet()			""
+	- FcCharSetFindLeafPos		""
+	- FcCharSetNumbers		""
+	- FcCharSetLeaf			""
+
+_XftSqrt()		""
+
+FcInitLoadConfigAndFonts()			stdio rpath wpath cpath fattr
+	- FcInitLoadOwnConfigAndFonts		stdio rpath wpath cpath fattr
+
+FcConfigDestroy()			stdio
+	- fc_atomic_ptr_cmpexch		""
+	- FcStrSetDestroy		stdio
+	- FcFontSetDestroy		stdio
+	- FcBlanksDestroy		stdio
+	- FcSubstDestroy		stdio
+	- FcStrFree			stdio
+
+FC_MIN()		""
+
+FcLangNormalize()		stdio
+	- FcStrCmpIgnoreCase	""
+	- FcStrCopy		stdio
+	- FcStrDowncase		""
+	- FcDebug		""
+	- FcLangSetIndex	""
+	- FcStrFree		stdio
+
+FcOpFlagsPrint()		""
+	- FC_OP_GET_FLAGS	""
+
+FcLangSetPrint()		""
+	- FcStrBufInit		""
+	- FcNameUnparseLangSet	""
+	- FcStrBufChar		""
+	- FcStrBufDestroy	""
+
+FcConfigPromote()			""
+	- FcLangSetPromote		""
+
+FcStrPlus()		stdio
+
+FcMatrixMultiply()	""
+
+FcCharSetUnion()		stdio
+	- FcCharSetOperate	stdio
+
+FcCharSetSubtract()		stdio
+	- FcCharSetOperate	stdio
+
+FcLangSetUnion()		stdio
+	- FcLangSetOperate	stdio
+
+FcDoubleCeil()			""
+	- _FcDoubleCeil		""
+	- _FcDoubleFloor	""
+
+_FcDoubleCeil()		""
+
+_FcDoubleFloor()	""
+
+FcDoubleRound()		""
+	- FcDoubleFloor	""
+
+FcDoubleTrunc()			""
+	- _FcDoubleFloor	""
+
+FcStrCmpIgnoreBlanksAndCase()			""
+	- FcStrCmpIgnoreCaseAndDelims		""
+
+FcMatrixEqual()		""
+
+FcCharSetIsSubset()			""
+	- FcCharSetNumbers		""
+	- FcCharSetLeaf			""
+	- FcCharSetFindLeafForward	""
+
+FcCharSetEqual()		""
+	- FcCharSetIterStart	""
+	- FcCharSetIterNext	""
+
+FcLangSetContains()		stdio
+	- FcDebug		""
+	- FC_MIN		""
+	- FcLangSetContainsLang	stdio 
+	- FcStrListCreate	""
+	- FcStrListNext		""
+	- FcStrListDone		stdio
+
+FcValuePrintWithPosition()	""
+	- _FcValuePrintFile	""
+
+FcPatternCreate()	stdio
+	FcPtrToOffset	""
+
+_XftDefaultInitDouble()		stdio rpath getpw
+	- XGetDefault		stdio rpath getpw
+	- FcPatternAddDouble	stdio
+
+_XftDefaultInitBool()		stdio rpath getpw
+	- XGetDefault		stdio rpath getpw
+	- XftDefaultParseBool	""
+	- FcPatternAddBool	stdio
+
+_XftDefaultInitInteger()	stdio rpath getpw
+	- XGetDefault		stdio rpath getpw
+	- FcNameConstant	""
+	- FcPatternAddInteger	stdio
+
+XRenderHasDepths()		stdio rpath
+	- ScreenCount		""
+	- ScreenOfDisplay	""
+	- DEPTH_MASK		""
+	- XNextRequest		stdio rpath
+	- _XLockMutex		stdio
+	- _XUnlockMutex		stdio
+	- XSetErrorHandler	stdio
+	- XCreatePixmap		stdio rpath
+	- RootWindow		""
+	- XSync			stdio rpath
+
+_XDeqAsyncHandler()		""
+
+_XVIDtoVisual()			""
+
+FT_ERR_CAT()			""
+	- FT_ERR_XCAT		""
+
+FT_MEM_FREE()			stdio
+	- ft_mem_free		stdio
+
+FT_Done_GlyphSlot()		stdio
+	- ft_glyphslot_done	stdio
+	- FT_FREE		stdio
+
+FT_List_Finalize()		stdio
+	- *destroy		stdio
+	- FT_FREE		stdio
+
+destroy_charmaps()			stdio
+	- FT_CMAP			""
+	- ft_cmap_done_internal		stdio
+	- FT_FREE			stdio
+
+*FT_Driver_Class->done_face()		stdio
+
+FT_Stream_Free()			stdio
+	- FT_Stream_Close		stdio
+	- FT_FREE			stdio
+
+FT_BOOL()		""
+
+FT_Stream_New()				stdio rpath
+	- FT_THROW			""
+	- FT_NEW			""
+	- FT_Stream_OpenMemory		""
+	- FT_Stream_Open		stdio rpath
+
+FT_DRIVER()		""
+
+FT_MODULE_IS_DRIVER()	""
+
+open_face()					stdio
+	- FT_ALLOC				""
+	- FT_NEW				""
+	- *FT_Driver_Class->init_face		stdio
+	- find_unicode_charmap			""
+	- FT_ERR_NEQ				""
+	- destroy_charmaps			stdio
+	- *FT_Driver_Class->done_face		stdio
+	- FT_FREE				stdio
+
+FT_ERR_NEQ()			""
+	- FT_ERROR_BASE		""
+	- FT_ERR		""
+
+FT_TRACE4()			""
+	- FT_TRACE		""
+
+FT_NEW()			""
+	- FT_MEM_SET_ERROR	""
+	- FT_MEM_NEW		""
+
+FT_List_Add()		""
+
+FT_New_GlyphSlot		stdio
+	- FT_THROW		""
+	- FT_TRACE4		""
+	- ft_glyphslot_init	stdio
+	- ft_glyphslot_done	stdio
+	- FT_FREE		stdio
+
+FT_New_Size()				stdio
+	- FT_THROW			""
+	- FT_ALLOC			""
+	- FT_NEW			""
+	- *FT_Driver_Class->init_size	""
+	- FT_List_Add			""
+	- FT_FREE			stdio
+
+FT_IS_SCALABLE()		""
+
+FT_HAS_VERTICAL()		""
+
+FT_HAS_FIXED_SIZES()		""
+
+FcCharSetFindLeafPos()			""
+	- FcCharSetFindLeafForward	""
+
+FcInitLoadOwnConfigAndFonts()		stdio rpath wpath cpath fattr
+	- FcInitLoadOwnConfig		stdio rpath
+	- FcConfigBuildFonts		stdio rpath wpath cpath fattr
+	- FcConfigDestroy		stdio
+
+FcFontSetDestroy()		stdio
+	- FcPatternDestroy	stdio
+
+FcBlanksDestroy()	stdio
+
+FcSubstDestroy()		stdio
+	- FcRuleDestroy		stdio
+
+FcStrCopy()		stdio
+	- FcStrdup	stdio
+
+FcStrDowncase()				""
+	- FcStrCaseWalkerInit		""
+	- FcStrCaseWalkerNext		""
+
+FC_OP_GET_FLAGS()	""
+
+FcStrBufInit()		""
+
+FcNameUnparseLangSet()		""
+	- FC_MIN		""
+	- FcStrBufChar		""
+	- FcStrBufString	""
+	- FcStrListCreate	""
+	- FcStrListNext		""
+	- FcStrListDone		stdio
+
+FcStrBufChar()		""
+
+FcStrBufDestroy()		""
+	- FcStrBufInit		""
+
+FcLangSetPromote()		""
+	- FC_ASSERT_STATIC	""
+	- FcLangSetIndex	""
+	- FcLangSetBitSet	""
+	- FcRefInit		""
+
+FcCharSetOperate()		stdio
+	- FcCharSetCreate	stdio
+	- FcCharSetIterStart	""
+	- FcCharSetAddLeaf	""
+	- FcCharSetIterNext	""
+	- FcCharSetIterSet	""
+	- FcCharSetDestroy	stdio
+
+FcLangSetOperate()		stdio
+	- FcLangSetCopy		stdio
+	- FcLangSetGetLangs	stdio
+	- FcStrListCreate	""
+	- FcStrSetDestroy	stdio
+	- FcStrListNext		stdio
+	- *func
+		- FcLangSetAdd	stdio
+		- FcLangSetDel
+	- FcStrListDone		stdio
+
+FcStrCmpIgnoreCaseAndDelims()	""
+	- FcStrCaseWalkerInit	""
+	- FcStrCaseWalkerNext	""
+
+FcCharSetFindLeafForward()	""
+	- FcCharSetNumbers	""
+
+FC_MIN()		""
+
+FcLangSetContainsLang()		stdio
+	- FcLangSetIndex	""
+	- FcLangSetBitGet	""
+	- FcLangCompare		""
+	- FcLangContains	""
+	- FcStrListCreate	""
+	- FcStrListNext		""
+
+XGetDefault()			stdio rpath getpw
+	- LockDisplay		stdio rpath
+	- InitDefaults		stdio rpath getpw
+	- UnlockDisplay		stdio
+	- XrmStringToName	stdio
+	- XrmStringToClass	stdio
+	- XrmQGetResource	stdio
+	- FcStrListDone		stdio
+
+XftDefaultParseBool()		""
+
+ScreenCount()			""
+
+DEPTH_MASK()			""
+
+XNextRequest()			stdio rpath
+	- LockDisplay		stdio rpath
+	- _XNextRequest		stdio rpath
+	- UnlockDisplay		stdio rpath
+
+FT_ERR_XCAT()		""
+
+ft_mem_free()			stdio
+	- *FT_Memory->free	stdio
+
+ft_glyphslot_done()				stdio
+	- *FT_Driver_Class->done_slot		stdio
+	- ft_glyphslot_free_bitmap		stdio
+	- FT_DRIVER_USES_OUTLINES		""
+	- FT_GlyphLoader_Done			stdio
+	- FT_FREE				stdio
+
+FT_CMAP()		""
+
+ft_cmap_done_internal()				stdio
+	- FT_FACE_MEMORY			""
+	- *FT_CMap_Class->done			""
+	- FT_FREE				stdio
+
+FT_Stream_Close()		stdio
+	- *FT_Stream->close	stdio
+
+FT_Stream_OpenMemory()		""
+
+FT_Stream_Open()		stdio rpath
+	- FT_THROW		""
+	- ft_fopen("rb")	stdio rpath
+	- FT_ERROR		""
+	- ft_fseek		stdio
+	- ft_ftell		stdio
+	- ft_fclose		stdio
+	- FT_TRACE1		""
+
+FT_ALLOC()			""
+	- FT_MEM_SET_ERROR	""
+	- FT_MEM_ALLOC		""
+
+*FT_Driver_Class->init_face()			stdio
+	XX_face_init()				stdio
+		- FT_TRACE2			""
+		- FT_Get_Module_Interface	stdio
+		- FT_ERROR			""
+		- FT_THROW			""
+		- FT_STREAM_SEEK		stdio
+		- *SFNT_Service->init_face	stdio
+		- *SFNT_Service->load_face	stdio
+		- XX_check_trickyness		stdio
+		- XX_face_load_hdmx		stdio
+		- FT_IS_SCALABLE		""
+		- XX_face_load_loca		stdio
+		- XX_face_load_cvt		stdio
+		- XX_face_load_fpgm		stdio
+		- XX_face_load_prep		stdio
+
+find_unicode_charmap()	""
+	- FT_ASSERT	""
+	- FT_THROW	""
+
+FT_ERROR_BASE()		""
+
+FT_TRACE()		""
+
+FT_MEM_SET_ERROR()	""
+
+FT_MEM_NEW()		""
+	- FT_MEM_ALLOC	""
+
+ft_glyphslot_init()				stdio
+	- FT_NEW				""
+	- FT_DRIVER_USES_OUTLINES		""
+	- FT_GlyphLoader_New			""
+	- *FT_Driver_Class->init_slot		stdio
+
+*FT_Driver_Class->init_size()	""
+	XX_size_init()		""
+
+FcInitLoadOwnConfig()		stdio rpath
+	- FcConfigCreate	stdio
+	- FcInitDebug		stdio
+	- FcConfigParseAndLoad	stdio rpath
+	- FcConfigDestroy	stdio
+	- FcInitFallbackConfig	stdio rpath
+	- FcConfigXdgCacheHome	stdio
+	- FcConfigAddCacheDir	stdio rpath
+	- FcStrFree		stdio
+
+FcConfigBuildFonts()		stdio rpath wpath cpath fattr
+	- FcConfigGetCurrent	stdio rpath
+	- FcFontSetCreate	stdio
+	- FcConfigSetFonts	stdio
+	- FcConfigAddDirList	stdio rpath wpath cpath fattr
+	- FcDebug		""
+	- FcFontSetPrint	stdio
+
+FcRuleDestroy()			stdio
+	- FcTestDestroy		stdio
+	- FcEditDestroy		stdio
+	- FcRuleDestroy		// recurse
+
+FcStrBufString()		""
+	- FcStrBufChar		""
+
+FC_ASSERT_STATIC()		""
+
+FcCharSetCreate()		stdio
+	- FcRefInit		""
+
+FcCharSetAddLeaf()			""
+	- FcCharSetFindLeafCreate	""
+
+FcLangSetGetLangs()		stdio
+	- FcStrSetCreate	""
+	- FcLangSetBitGet	""
+	- FcStrListCreate	""
+	- FcStrListNext		""
+	- FcStrSetAdd		stdio
+	- FcStrListDone		stdio
+
+FcLangSetDel()
+	- FcLangSetIndex	""
+	- FcLangSetBitReset	""
+	- FcStrSetDel
+
+FcLangSetBitGet()		""
+
+FcLangCompare()			""
+	- FcToLower		""
+	- FcLangEnd		""
+
+FcLangContains()		""
+	- FcToLower		""
+
+InitDefaults()			stdio rpath getpw!!
+	- XrmInitialize		stdio
+	- GetHomeDir		stdio getpw !!!
+	- XrmGetFileDatabase	stdio rpath
+	- XrmGetStringDatabase	stdio rpath
+	- _XGetHostname		stdio
+	- XrmMergeDatabases	stdio
+
+XrmStringToName()		stdio
+	- XrmStringToQuark	stdio
+
+XrmStringToClass()		stdio
+	- XrmStringToQuark	stdio
+
+_XNextRequest()			stdio rpath
+	- require_socket	stdio rpath
+	- NextRequest		""
+
+*FT_Memory->free()		stdio
+
+*FT_Driver_Class->done_slot()			stdio
+	- XXX_slot_done				stdio
+		- XXX_glyph_done		stdio
+			- FT_FREE		stdio
+
+ft_glyphslot_free_bitmap()	stdio
+	- FT_FACE_MEMORY	""
+	- FT_FREE		stdio
+
+FT_DRIVER_USES_OUTLINES()	""
+	- FT_MODULE_CLASS	""
+
+FT_GlyphLoader_Done()			stdio
+	- FT_GlyphLoader_Reset		stdio
+	- FT_FREE			stdio
+
+FT_FACE_MEMORY()		""
+
+*FT_CMap_Class->done()		""
+	XXX_cmap_done		""
+
+*FT_Stream->close()		stdio
+	- XXX_stream_close	stdio
+		- FT_FREE	stdio
+
+ft_fopen(MODE)			rpath and/or wpath cpath
+	- fopen(3)		rpath and/or wpath cpath
+
+FT_ERROR()			""
+
+ft_fseek()			stdio
+
+ft_ftell()			stdio
+
+ft_fclose()			stdio
+
+FT_TRACE1()			""
+	FT_TRACE		""
+
+FT_MEM_ALLOC()			""
+	- FT_ASSIGNP_INNER	""
+
+FT_TRACE2()			""
+	- FT_TRACE		""
+
+FT_Get_Module_Interface()	stdio
+	- FT_Get_Module		stdio
+
+FT_STREAM_SEEK()		stdio
+	- FT_SET_ERROR		""
+	- FT_Stream_Seek	stdio
+
+*SFNT_Service->init_face()			stdio
+	sfnt_init_face				stdio
+		- FT_UNUSED			""
+		- FT_Get_Module_Interface	stdio
+		- FT_ERROR			""
+		- FT_THROW			""
+		- FT_FACE_FIND_GLOBAL_SERVICE	stdio
+		- FT_TRACE2			""
+		- sfnt_open_font		stdio
+		- FT_ABS			""
+		- FT_STREAM_SEEK		stdio
+		- *SFNT_Service->load_font_dir	stdio
+
+*SFNT_Service->load_face()			stdio
+	sfnt_load_face				stdio
+		- FT_UNUSED			""
+		- FT_TRACE2			""
+		- FT_BOOL			""
+		- tt_face_lookup_table		""
+		- LOAD_				stdio
+		- FT_THROW			""
+		- LOADM_			stdio
+		- FT_ERR_EQ			""
+		- GET_NAME			""
+		- TT_FACE_HAS_KERNING		""
+		- tt_face_build_cmaps		stdio
+		- sfnt_find_encoding		""
+		- FT_NEW_ARRAY			stdio
+		- *SFNT->load_strike_metrics	stdio
+		- FT_HAS_FIXED_SIZES		""
+		- FT_IS_SCALABLE		""
+		- FT_TRACE2			""
+
+XX_check_trickyness()			stdio
+	- tt_check_trickyness_family	stdio
+	- tt_check_trickyness_sfnt_ids	stdio
+
+XX_face_load_hdmx()			stdio
+	- *TT_Face->goto_table		stdio
+	- FT_FRAME_EXTRACT		stdio
+	- FT_NEXT_USHORT		""
+	- FT_NEXT_ULONG			""
+	- FT_THROW			""
+	- FT_NEW_ARRAY			stdio
+	- FT_FRAME_RELEASE		stdio
+
+XX_face_load_loca()			stdio
+	- *TT_Face->goto_table		stdio
+	- FT_ERR_EQ			""
+	- FT_TRACE2			""
+	- FT_THROW			""
+	- FT_STREAM_POS			""
+	- FT_FRAME_EXTRACT		stdio
+
+XX_face_load_cvt()		stdio
+	- FT_TRACE2		""
+	- FT_NEW_ARRAY		stdio
+	- FT_FRAME_ENTER	stdio
+	- FT_GET_SHORT		""
+	- FT_FRAME_EXIT		stdio
+	- tt_face_vary_cvt	stdio
+	- FT_UNUSED		""
+
+XX_face_load_fpgm()		stdio
+	- FT_TRACE2		""
+	- *TT_Face->goto_table	stdio
+	- FT_FRAME_EXTRACT	stdio
+	- FT_UNUSED		""
+
+XX_face_load_prep()		stdio
+	- FT_TRACE2		""
+	- *TT_Face->goto_table	stdio
+	- FT_FRAME_EXTRACT	stdio
+	- FT_UNUSED		""
+
+FT_ASSERT()		""
+
+FT_GlyphLoader_New()				""
+	- FT_NEW				""
+
+*FT_Driver_Class->init_slot()			stdio
+	- XX_slot_init				stdio
+		- FT_GlyphLoader_CreateExtra	stdio
+
+FcConfigCreate()		stdio
+	- FcStrSetCreate	""
+	- FcRefInit		""
+	- FcFontSetDestroy	stdio
+
+FcInitDebug()		stdio
+
+FcConfigParseAndLoad()			stdio rpath	// libexpat calls not listed, should be all stdio (famous last words)
+	- FcConfigFilename		stdio rpath
+	- FcStrSetMember		stdio
+	- FcStrFree			stdio
+	- FcStrSetAdd			stdio
+	- FcFileIsDir			stdio rpath
+	- FcConfigParseAndLoadDir	stdio rpath
+	- FcDebug			""
+	- FcOpen(O_RDONLY)		stdio rpath
+	- FcConfigParseInit		""
+	- FcConfigCleanup		stdio
+	- FcConfigMessage		stdio
+
+FcInitFallbackConfig()		stdio rpath
+	- FcConfigCreate	stdio
+	- FcConfigAddDir	stdio
+	- FcConfigAddCacheDir	stdio rpath
+	- FcConfigDestroy	stdio
+
+FcConfigXdgCacheHome()		stdio
+	- FcStrCopy		stdio
+	- FcConfigHome		stdio
+
+FcConfigAddCacheDir()		stdio rpath
+	- FcStrSetAddFilename	stdio rpath
+
+FcFontSetCreate()		stdio
+
+FcConfigSetFonts()		stdio
+	- FcFontSetDestroy	stdio
+
+FcConfigAddDirList()		stdio rpath cpath wpath fattr
+	- FcStrListCreate	""
+	- FcStrListNext		""
+	- FcDebug		""
+	- FcDirCacheRead	stdio rpath cpath wpath fattr
+	- FcConfigAddCache	stdio rpath
+	- FcDirCacheUnload	stdio
+	- FcStrListDone		stdio
+
+FcFontSetPrint()		stdio
+	- FcPatternPrint	stdio
+
+FcTestDestroy()			stdio
+	- FcExprDestroy		stdio
+
+FcEditDestroy()			stdio
+	- FcExprDestroy		stdio
+
+FcCharSetFindLeafCreate()	""
+	- FcCharSetFindLeafPos	""
+	- FcCharSetLeaf		""
+	- FcCharSetPutLeaf	""
+
+FcLangSetBitReset()		""
+
+FcStrSetDel()			stdio
+	- FcStrCmp		""
+	- FcStrFree		stdio
+
+FcLangEnd()			""
+
+XrmInitialize()				stdio
+	- XrmPermStringToQuark		stdio
+
+GetHomeDir()		getpw		!!! look for this, betting many programs can violate this
+	- _XGetpwnam	getpw
+	- _XGetpwuid	getpw
+
+XrmGetStringDatabase()		stdio rpath
+	- NewDatabase		stdio
+	- _XLockMutex		stdio
+	- GetDatabase		stdio rpath
+	- _XUnlockMutex		stdio
+
+_XGetHostname()		stdio
+
+XrmMergeDatabases()			stdio
+	- XrmCombineDatabase		stdio
+
+FT_MODULE_CLASS()	""
+
+FT_GlyphLoader_Reset()			stdio
+	- FT_FREE			stdio
+	- FT_GlyphLoader_Rewind		""
+
+FT_ASSIGNP_INNER()			""
+	- FT_ASSIGNP			""
+
+FT_Get_Module()				stdio
+	- ft_strcmp			stdio
+
+FT_SET_ERROR()				""
+
+FT_Stream_Seek()			stdio
+	- *FT_Stream->read		stdio
+	- FT_ERROR			""
+	- FT_THROW			""
+
+FT_UNUSED()				""
+
+FT_FACE_FIND_GLOBAL_SERVICE()		stdio
+	- FT_MODULE			""
+	- FT_FACE			""
+	- ft_module_get_service		stdio
+
+sfnt_open_font()			stdio
+	- FT_FRAME_START		""
+	- FT_FRAME_LONG			stdio
+	- FT_STREAM_POS			""
+	- FT_READ_ULONG			stdio
+	- FT_TRACE2			""
+	- FT_STREAM_SEEK		stdio
+	- woff_open_font		stdio
+	- FT_THROW			""
+	- FT_TRACE3			""
+	- FT_STREAM_READ_FIELDS		stdio
+	- FT_NEW_ARRAY			stdio
+	- FT_GET_ULONG			""
+	- FT_FRAME_EXIT			stdio
+	- FT_NEW			""
+
+FT_ABS()				""
+
+*SFNT_Service->load_font_dir()		stdio
+	- FT_FRAME_START		""
+	- FT_FRAME_USHORT		stdio
+	- FT_TRACE2			""
+	- FT_STREAM_POS			""
+	- FT_READ_ULONG			stdio
+	- FT_STREAM_READ_FIELDS		stdio
+	- check_table_dir		stdio
+	- FT_QNEW_ARRAY			stdio
+	- FT_STREAM_SEEK		stdio
+	- FT_FRAME_ENTER		stdio
+	- FT_GET_TAG4			""
+	- FT_FRAME_EXIT			stdio
+
+tt_face_lookup_table()			""
+	- FT_TRACE4			""
+
+LOAD_(??)				stdio
+	*SFNT_Service->load_??		stdio
+
+LOADM_(??)				stdio
+	*SFNT_Service->load_??		stdio
+
+FT_ERR_EQ()				""
+	- FT_ERROR_BASE			""
+
+GET_NAME()				""
+	- tt_face_get_name		""
+
+TT_FACE_HAS_KERNING()			""
+
+tt_face_build_cmaps()			stdio
+	- FT_FACE_LIBRARY		""
+	- FT_UNUSED			""
+	- FT_THROW			""
+	- TT_NEXT_USHORT		""
+	- FT_ERROR			""
+	- TT_PEEK_USHORT		""
+	- FT_VALIDATOR			""
+	- ft_setjmp			stdio
+	- *TT_CMap_Class->validate	stdio
+	- ft_validator_init		""
+	- FT_CMap_New			""
+
+sfnt_find_encoding()		""
+
+FT_NEW_ARRAY()			stdio
+	- FT_MEM_SET_ERROR	""
+	- FT_MEM_NEW_ARRAY	stdio
+
+*SFNT->load_strike_metrics()	stdio
+	- *TT_Face->goto_table	stdio
+	- FT_FRAME_EXIT		stdio
+	- FT_MulDiv		""
+
+tt_check_trickyness_family()	stdio
+	- ft_strstr		stdio
+
+tt_check_trickyness_sfnt_ids()	stdio
+	- FT_MEM_SET		stdio
+	- tt_get_sfnt_checksum	stdio
+
+*TT_Face->goto_table()		stdio
+	- tt_face_lookup_table	""
+	- FT_STREAM_SEEK	stdio
+	- FT_THROW		""
+
+FT_FRAME_EXTRACT()			stdio
+	- FT_SET_ERROR			""
+	- FT_DEBUG_INNER		""
+	- FT_Stream_ExtractFrame	stdio
+
+FT_NEXT_USHORT()			""
+	- FT_PEEK_USHORT		""
+
+FT_NEXT_ULONG()				""
+	- FT_PEEK_ULONG			""
+
+FT_FRAME_RELEASE()			stdio
+	- FT_DEBUG_INNER		""
+	- FT_Stream_ReleaseFrame	stdio
+
+FT_STREAM_POS()				""
+	- FT_Stream_Pos			""
+
+FT_FRAME_ENTER()			stdio
+	- FT_SET_ERROR			""
+	- FT_DEBUG_INNER		""
+	- FT_Stream_EnterFrame		stdio
+
+FT_GET_SHORT()				""
+	- FT_GET_MACRO			""
+
+FT_FRAME_EXIT()				stdio
+	- FT_DEBUG_INNER		""
+	- FT_Stream_ExitFrame		stdio
+
+tt_face_vary_cvt()			stdio
+	- *TT_Face->goto_table		stdio
+	- FT_FRAME_ENTER		stdio
+	- FT_Stream_FTell		""
+	- FT_GET_LONG			""
+	- FT_NEW_ARRAY			stdio
+	- FT_GET_USHORT			""
+	- FT_GET_SHORT			""
+	- FT_Stream_SeekSet		""
+	- ft_var_readpackedpoints	stdio
+	- ft_var_apply_tuple		""
+	- ft_var_readpackeddeltas	stdio
+	- FT_MulFix			""
+	- FT_FREE			stdio
+	- FT_FRAME_EXIT			stdio
+
+FT_GlyphLoader_CreateExtra()		stdio
+	- FT_NEW_ARRAY			stdio
+	- FT_GlyphLoader_Adjust_Points	""
+
+FcConfigFilename()			stdio rpath
+	- FcConfigHome			stdio
+	- FcConfigFileExists		stdio rpath
+	- FcConfigGetPath		stdio
+	- FcConfigFreePath		stdio
+
+FcStrSetMember()		stdio
+	- FcStrCmp		stdio
+
+FcFileIsDir()			stido rpath
+	- FcStat		stdio rpath
+
+FcConfigParseAndLoadDir()		stdio rpath
+	- opendir(3)			stdio rpath
+	- FcConfigMessage		stdio
+	- FcStrSetCreate		""
+	- FcDebug			""
+	- FcStrSetAdd			stdio
+	- FcConfigParseAndLoad		stdio
+	- FcStrSetDestroy		stdio
+
+FcOpen(MODE)		stdio rpath and/or wpath cpath
+	- open(2)	stdio rpath and/or wpath cpath
+
+FcConfigParseInit()		""
+
+FcConfigCleanup()		stdio
+	- FcPStackPop		stdio
+
+FcConfigMessage()	stdio		// calls libexpat
+
+FcConfigAddDir()
+	- FcConfigAddConfigDir
+	- FcConfigAddFontDir
+
+FcConfigHome()		stdio
+
+FcStrSetAddFilename()			stdio rpath
+	- FcStrCopyFilename		stdio rpath
+	- _FcStrSetAppend		stdio
+	- FcStrFree			stdio
+
+FcDirCacheRead()			stdio rpath cpath wpath fattr
+	- FcDirCacheLoad		stdio rpath
+	- FcDirCacheScan		stdio rpath cpath wpath fattr
+
+FcConfigAddCache()			stdio rpath
+	- FcCacheSet			""
+	- FcFontSetFont			""
+	- FcPatternObjectGetString	stdio
+	- FcConfigAcceptFilename	stdio
+	- FcConfigAcceptFont		stdio
+	- FcFontSetAdd			stdio
+	- FcDirCacheReference		stdio
+	- FcCacheDirs			""
+	- FcOffsetToPtr			""
+	- FcStrSetAddFilename		stdio rpath
+
+FcDirCacheUnload()			stdio
+	- FcCacheObjectDereference	stdio
+
+FcExprDestroy()			stdio
+	- FC_OP_GET_OP		""
+	- FcFree		stdio
+	- FcExprMatrixFree	stdio
+	- FcCharSetDestroy	stdio
+	- FcLangSetDestroy	stdio
+	- FcFree		stdio
+	- FcExprDestroy		// recurse
+
+FcCharSetPutLeaf()			""
+	- FcCharSetLeaves		""
+	- FcCharSetNumbers		""
+	- FC_IS_ZERO_OR_POWER_OF_TWO	""
+	- FcPtrToOffset			""
+
+FcStrCmp()		""
+
+XrmPermStringToQuark()			stdio
+	- _XrmInternalStringToQuark	stdio
+
+_XGetpwnam()		getpw
+
+_XGetpwuid()		getpw
+
+XrmCombineDatabase()		stdio
+	- _XLockMutex		stdio
+	- MergeTables		stdio
+	- MergeValues		stdio
+	- _XUnlockMutex		stdio
+	- _XFreeMutex		stdio
+	- Xfree			stdio
+
+FT_GlyphLoader_Rewind()		""
+
+FT_ASSIGNP()			""
+
+ft_strcmp()			stdio
+
+*FT_Stream->read()		stdio
+	- STREAM_FILE		""
+	- ft_fseek		stdio
+	- ft_fread		stdio
+
+FT_MODULE()		""
+
+FT_FACE()		""
+
+ft_module_get_service()				stdio
+	- *FT_Driver_Class->get_interface	stdio
+
+FT_FRAME_START()		""
+
+FT_FRAME_LONG()				stdio
+	- FT_FRAME_FIELD		stdio
+
+FT_READ_ULONG()				stdio
+	- FT_READ_MACRO			stdio
+
+woff_open_font()			stdio
+	- FT_Stream_OpenMemory		""
+	- FT_Stream_Free		stdio
+	- FT_Stream_Close		stdio
+
+FT_TRACE3()		""
+
+FT_STREAM_READ_FIELDS()			stdio
+	- FT_Stream_ReadFields		stdio
+	- FT_SET_ERROR			""
+
+FT_GET_ULONG()				""
+	- FT_GET_MACRO			""
+
+FT_FRAME_USHORT()			stdio
+	- FT_FRAME_FIELD		stdio
+
+check_table_dir()			stdio
+	- FT_STREAM_SEEK		stdio
+	- FT_STREAM_READ_FIELDS		stdio
+	- FT_TRACE2			""
+
+FT_QNEW_ARRAY()				stdio
+	- FT_MEM_SET_ERROR		""
+	- FT_MEM_NEW_ARRAY		stdio
+
+FT_GET_TAG4()				""
+	- FT_GET_MACRO			""
+
+tt_face_get_name()					""
+	- *convert					""
+		- tt_name_entry_ascii_from_utf16	""
+		- tt_name_entry_ascii_from_other	""
+
+FT_FACE_LIBRARY()		""
+
+TT_NEXT_USHORT()		""
+	- FT_NEXT_USHORT	""
+
+TT_PEEK_USHORT()		""
+	- FT_PEEK_USHORT	""
+
+FT_VALIDATOR()			""
+
+ft_setjmp()			stdio
+
+*TT_CMap_Class->validate()	stdio
+
+ft_validator_init()		""
+
+FT_CMap_New()			""
+	- *FT_CMap_Class->init	""
+
+FT_MEM_NEW_ARRAY()			stdio
+	- FT_ASSIGNP_INNER		""
+	- ft_mem_realloc		stdio
+
+ft_strstr()		stdio
+
+FT_MEM_SET()		stdio
+	- ft_memset	stdio
+
+tt_get_sfnt_checksum()			stdio
+	- *TT_Face->goto_table		stdio
+	- tt_synth_sfnt_checksum	stdio
+
+FT_DEBUG_INNER()		""
+
+FT_Stream_ExtractFrame()	stdio
+	- FT_Stream_EnterFrame	stdio
+
+FT_PEEK_USHORT()		""
+	- FT_UINT16		""
+
+FT_PEEK_ULONG()			""
+	- FT_UINT32		""
+
+FT_Stream_ReleaseFrame()	stdio
+	- ft_mem_free		stdio
+	- FT_FREE		stdio
+
+FT_Stream_Pos()		""
+
+FT_Stream_EnterFrame()		stdio
+	- ft_mem_qalloc		stdio 
+
+FT_GET_MACRO(??)		""
+	- FT_NEXT_??		""
+
+FT_Stream_ExitFrame()		stdio
+	- ft_mem_free		stdio
+
+FT_Stream_FTell()		""
+
+FT_GET_LONG()			""
+	- FT_GET_MACRO		""
+
+FT_GET_USHORT()			""
+	- FT_GET_MACRO		""
+
+FT_Stream_SeekSet()		""
+
+ft_var_readpackedpoints()	stdio
+
+ft_var_apply_tuple()		""
+	- FT_MulFix		""
+	- FT_MulDiv		""
+
+ft_var_readpackeddeltas()	stdio
+
+FT_MulFix()			""
+
+FT_GlyphLoader_Adjust_Points()	""
+
+FcConfigFileExists()		stdio rpath
+	- access(2)		stdio rpath
+
+FcConfigGetPath()		stdio
+
+FcConfigFreePath()		stdio
+
+FcStat()			stdio rpath
+	stat(2)			stdio rpath
+
+FcPStackPop()			stdio
+	- FcConfigMessage	stdio 
+	- FcVStackClear		stdio
+	- FcStrBufDestroy	""
+
+FcConfigAddConfigDir()		stdio rpath
+	- FcStrSetAddFilename	stdio rpath
+
+FcConfigAddFontDir()		stdio rpath
+	- FcStrSetAddFilename	stdio rpath
+
+FcStrCopyFilename()		stdio rpath
+	- FcConfigHome		stdio
+	- FcStrCanonFilename	stdio rpath
+
+FcDirCacheLoad()		stdio rpath
+	- FcDirCacheProcess	stdio rpath
+
+FcDirCacheScan()		stdio rpath cpath wpath fattr
+	- FcDebug		""
+	- FcStatChecksum	stdio rpath
+	- FcFontSetCreate	stdio
+	- FcStrSetCreate	""
+	- FcDirScanConfig	stdio rpath
+	- FcDirCacheBuild	stdio
+	- FcDirCacheWrite	stdio rpath cpath wpath fattr
+	- FcStrSetDestroy	stdio
+	- FcFontSetDestroy	stdio
+
+FcCacheSet()			""
+	- FcOffsetMember	""
+
+FcFontSetFont()			""
+	- FcIsEncodedOffset	""
+	- FcEncodedOffsetToPtr	""
+	- FcFontSetFonts	""
+
+FcConfigAcceptFilename()	stdio
+	- FcConfigGlobsMatch	stdio
+
+FcConfigAcceptFont()		stdio
+	- FcConfigPatternsMatch	stdio
+
+FcFontSetAdd()		stdio
+
+FcDirCacheReference()		stdio
+	- FcCacheFindByAddr	stdio
+	- FcRefAdd		""
+
+FcCacheDirs()			""
+	- FcOffsetMember	""
+
+FcExprMatrixFree()		stdio
+	- FcExprDestroy		stdio
+
+FC_IS_ZERO_OR_POWER_OF_TWO()	""
+
+MergeTables()		stdio
+	- NodeBuckets	""
+	- NodeHash	""
+	- MergeValues	stdio
+	- MergeTables	// recurse
+	- Xfree		stdio
+	- GROW		stdio
+
+MergeValues()		stdio
+	- LeafHash	""
+	- Xfree		stdio
+	- GROW		stdio
+
+STREAM_FILE()		""
+
+ft_fread()		stdio
+
+*FT_Driver_Class->get_interface()		stdio
+	- XXX_get_interface			stdio
+		- ft_service_list_lookup	stdio
+		- FT_Get_Module			stdio
+
+FT_FRAME_FIELD()		stdio
+	- FT_FIELD_SIZE		""
+	- FT_FIELD_OFFSET	stdio
+
+FT_READ_MACRO(FUNC)	stdio
+	*FUNC		stdio
+
+FT_Stream_ReadFields()			stdio
+	- FT_Stream_EnterFrame		stdio
+	- FT_MEM_COPY			stdio
+	- FT_Stream_ExitFrame		stdio
+
+tt_name_entry_ascii_from_utf16()		""
+	- tt_name_entry_ascii_from_other	""
+
+tt_name_entry_ascii_from_other()		""
+
+*FT_CMap_Class->init()				""
+	- FT_CMAP_FACEq				""
+
+ft_mem_realloc()		stdio
+	- ft_mem_qrealloc	stdio
+	- FT_MEM_ZERO		stdio
+	- FT_BASE_DEF		""
+	- ft_mem_alloc		stdio
+
+ft_memset()		stdio 
+
+tt_synth_sfnt_checksum()	stdio
+
+FT_UINT16()			""
+
+FT_UINT32()			""
+
+ft_mem_qalloc()				stdio
+	- *FT_Memory->alloc		stdio
+
+FT_NEXT_??()		""
+
+FcVStackClear()				stdio
+	- FcVStackPeek			""
+	- FcVStackPopAndDestroy		stdio
+
+FcStrCanonFilename()			stdio rpath
+	- getcwd(3)			stdio rpath
+	- FcStrCanonAbsoluteFilename	stdio
+	- FcStrBuildFilename		stdio
+	- FcStrFree			stdio
+
+FcDirCacheProcess()			stdio rpath
+	- FcStatChecksum		stdio rpath
+	- FcDirCacheBasename		stdio
+	- FcStrListCreate		""
+	- FcStrListNext			""
+	- FcConfigGetSysRoot		stdio rpath
+	- FcStrBuildFilename		stdio
+	- FcDirCacheOpenFile		stdio rpath
+	- FcStrFree			stdio
+	- FcStrListDone			stdio
+
+FcStatChecksum()			stdio rpath
+	- FcStat			stdio rpath
+
+FcDirScanConfig()		stdio rpath
+	- FcConfigGetBlanks	stdio rpath
+	- FcDebug		""
+	- opendir(3)		stdio rpath
+	- FcStrSetCreate	""
+	- readdir(3)		stdio rpath
+	- FcStrSetAdd		stdio
+	- FcFileScanConfig	stdio rpath
+	- FcStrSetDestroy	stdio
+
+FcDirCacheBuild()			stdio
+	- FcSerializeCreate		stdio
+	- FcSerializeReserve		""
+	- FcStrSerializeAlloc		""
+	- FcFontSetSerializeAlloc	stdio
+	- FcStrSerialize		""
+	- FcPtrToOffset			""
+	- FcSerializePtr		""
+	- FcFontSetSerialize		stdio
+	- FcSerializeDestroy		stdio
+	- FcCacheInsert			stdio
+
+FcDirCacheWrite()			stdio rpath cpath wpath fattr
+	- FcCacheDir			stdio
+	- FcConfigGetSysRoot		stdio rpath
+	- FcStrListCreate		""
+	- FcStrListNext			""
+	- FcStrFree			stdio
+	- FcStrBuildFilename		stdio
+	- FcStrCopyFilename		stdio rpath
+	- access(2)			stdio rpath
+	- FcMakeDirectory		stdio rpath cpath wpath fattr
+	- FcDirCacheCreateTagFile	stdio rpath cpath wpath
+	- FcStrListDone			stdio
+	- FcDirCacheBasename		stdio
+	- FcDebug			""
+	- FcAtomicCreate		stdio
+	- FcAtomicLock			rpath cpath wpath
+	- FcOpen(O_RDWR|O_CREAT)	stdio rpath wpath cpath
+	- FcAtomicNewFile		""
+	- FcAtomicReplaceOrig		cpath
+	- FcStat			stdio rpath
+	- lock_cache			stdio
+	- FcCacheFindByAddrUnlocked	""
+	- FcAtomicUnlock		cpath
+	- FcAtomicDestroy		stdio
+
+FcEncodedOffsetToPtr()		""
+	- FcOffsetToPtr		""
+	- FcOffsetDecode	""
+
+FcFontSetFonts()		""
+	- FcPointerMember	""
+
+FcConfigGlobsMatch()		stdio
+	- FcStrGlobMatch	stdio
+
+FcConfigPatternsMatch()		stdio
+	- FcListPatternMatchAny	stdio
+
+FcRefAdd()			""
+	- fc_atomic_int_add	""
+
+ft_service_list_lookup()	stdio
+	- ft_strcmp		stdio
+
+FT_FIELD_SIZE()		""
+
+FT_FIELD_OFFSET()	stdio
+
+FT_MEM_COPY()		stdio
+	- ft_memcpy	stdio
+
+FT_CMAP_FACE()		""
+
+ft_mem_qrealloc()		stdio
+	- ft_mem_free		stdio
+	- ft_mem_alloc		stdio
+	- *FT_Memory->realloc	stdio
+
+FT_MEM_ZERO()			stdio
+	- FT_MEM_SET		stdio
+
+ft_mem_alloc()			stdio
+	- ft_mem_qalloc		stdio
+	- FT_MEM_ZERO		stdio
+
+*FT_Memory->alloc()		stdio
+	- ft_mem_debug_alloc	stdio
+	- ft_alloc		stdio
+
+ft_alloc()			stdio
+	- ft_smalloc		stdio
+
+ft_mem_debug_alloc		stdio
+	- ft_mem_debug_panic	stdio
+	- ft_mem_table_alloc	stdio
+	- ft_mem_table_set	stdio
+
+FcVStackPeek()		""
+
+FcVStackPopAndDestroy()			stdio
+	- FcStrFree			stdio
+	- FcPatternDestroy		stdio
+	- FcExprMatrixFreeShallow	stdio
+	- FcCharSetDestroy		stdio
+	- FcLangSetDestroy		stdio
+	- FcTestDestroy			stdio
+	- FcExprDestroy			stdio
+	- FcEditDestroy			stdio
+
+FcStrCanonAbsoluteFilename()		stdio
+
+FcStrBuildFilename()		stdio
+	- FcStrSetCreate	""
+	- FcStrSetAdd		stdio
+	- FcStrListNext		""
+	- FcStrListDone		stdio
+	- FcStrSetDestroy	stdio
+
+FcDirCacheBasename()		stdio
+	- MD5Init		""
+	- MD5Update		stdio
+	- MD5Final		stdio
+
+FcConfigGetSysRoot()		stdio rpath
+	- FcConfigGetCurrent	stdio rpath
+
+FcDirCacheOpenFile()		stdio rpath
+	- FcOpen(O_RDONLY)	stdio rpath
+
+FcFileScanConfig()		stdio rpath
+	- FcFileIsDir		stdio rpath
+	- FcStrSetAdd		stdio
+	- FcFileScanFontConfig	stdio rpath
+
+FcSerializeCreate()		stdio
+
+FcSerializeReserve()		""
+	- FcAlignSize		""
+
+FcStrSerializeAlloc()		""
+	- FcSerializeAlloc	""
+
+FcFontSetSerializeAlloc()		stdio
+	- FcSerializeAlloc		""
+	- FcPatternSerializeAlloc	stdio
+
+FcStrSerialize()			""
+	- FcSerializePtr		""
+
+FcSerializePtr()			""
+	- FcSerializeOffset		""
+
+FcFontSetSerialize()			stdio
+	- FcSerializePtr		""
+	- FcPtrToEncodedOffset		""
+	- FcPatternSerialize		stdio
+
+FcSerializeDestroy()			stdio
+	- FcCharSetFreezerDestroy	stdio
+
+FcCacheInsert()			stdio
+	- lock_cache		stdio 
+	- random_level		stdio
+	- FcRefInit		""
+	- unlock_cache		stdio
+
+FcCacheDir()			stdio
+	- FcOffsetMember	""
+
+FcMakeDirectory()		stdio rpath cpath wpath fattr
+	- FcStrDirname		stdio
+	- access(2)		rpath
+	- mkdir(2)		cpath
+	- chmod(2)		fattr wpath
+	- FcMakeDirectory	// recurse
+	- FcStrFree		stdio
+
+FcDirCacheCreateTagFile()	stdio rpath cpath wpath
+	- access(2)		rpath
+	- FcStrBuildFilename	stdio
+	- FcAtomicCreate	stdio
+	- FcAtomicLock		rpath cpath wpath
+	- FcOpen(O_RDWR)	rpath wpath
+	- FcAtomicReplaceOrig	cpath
+	- FcAtomicUnlock	cpath
+	- FcAtomicDestroy	stdio
+	- FcStrFree		stdio
+	- FcDebug		""
+
+FcAtomicCreate()		stdio
+
+FcAtomicLock()			rpath cpath wpath
+	- FcMakeTempfile	rpath cpath wpath
+	- unlink(2)		cpath
+	- link(2)		cpath
+	- mkdir(2)		cpath
+	- rmdir(2)		cpath
+	- FcAtomicLock		// recurse
+
+FcAtomicNewFile()		""
+
+FcAtomicReplaceOrig()		cpath
+	- rename(2)		cpath
+
+FcAtomicUnlock()		cpath
+	- rmdir(2)		cpath
+
+FcAtomicDestroy()		stdio
+
+FcStrGlobMatch()		stdio
+	- FcStrGlobMatch	// recurse
+
+FcListPatternMatchAny()			stdio
+	- FcPatternElts			stdio
+	- FcPatternObjectFindElt	stdio
+	- FcListValueListMatchAny	stdio
+	- FcPatternEltValues		stdio
+
+ft_memcpy()		stdio
+
+*FT_Memory->realloc()			stdio
+	- ft_realloc			stdio
+	- ft_mem_debug_realloc		stdio
+
+ft_realloc()			stdio
+	- ft_srealloc		stdio
+
+ft_mem_debug_realloc()			stdio
+	- FT_FILENAME			""
+	- ft_mem_debug_panic		stdio
+	- ft_mem_table_get_nodep	""
+	- ft_mem_table_alloc		stdio
+	- ft_mem_table_set		stdio
+	- ft_memcpy			stdio
+	- ft_mem_table_remove		stdio
+	- ft_mem_table_free		stdio
+
+ft_smalloc()		stdio
+
+ft_mem_debug_panic()	stdio
+
+ft_mem_table_alloc()			stdio
+	*FT_MemTable->alloc		stdio
+
+ft_mem_table_set()			stdio
+	- ft_mem_table_get_nodep	""
+	- ft_mem_debug_panic		stdio
+	- FT_FILENAME			""
+	- ft_mem_table_alloc		stdio
+	- ft_mem_table_get_source	stdio
+	- ft_mem_table_resize		stdio
+
+FcExprMatrixFreeShallow()		stdio
+
+MD5Init()		""
+
+MD5Update()			stdio
+	- byteReverse		""
+	- MD5Transform		""
+
+MD5Final()			stdio
+	- byteReverse		""
+	- MD5Transform		""
+
+FcFileScanFontConfig()			stdio rpath
+	- FcDebug			""
+	- FcFreeTypeQuery		stdio
+	- FcConfigSubstitute		stdio rpath
+	- FcPatternDestroy		stdio
+	- FcPatternPrint		stdio
+	- FcFontSetAdd			stdio
+	- FcPatternDestroy		stdio
+
+FcAlignSize()		""
+
+FcSerializeAlloc()		""
+	- FcAlignSize		""
+
+FcPatternSerializeAlloc()			stdio
+	- FcPatternElts				stdio
+	- FcSerializeAlloc			""
+	- FcValueListSerializeAlloc		stdio
+
+FcSerializeOffset()		""
+
+FcPtrToEncodedOffset()		""
+	- FcOffsetEncode	""
+	- FcPtrToOffset		""
+
+FcPatternSerialize()			stdio
+	- FcPatternElts			stdio
+	- FcSerializePtr		""
+	- FcRefSetConst			""
+	- FcSerializePtr		""
+	- FcPtrToOffset			""
+	- FcValueListSerialize		stdio
+	- FcPatternEltValues		stdio
+	- FcPtrToEncodedOffset		""
+	- FcDebug			""
+	- FcPatternPrint		stdio
+
+FcCharSetFreezerDestroy()	stdio
+	- FcDebug		""
+
+random_level()			stdio
+	- FcRandom		stdio
+
+FcStrDirname()			stdio
+	- FcStrLastSlash	stdio
+	- FcStrCopy		stdio
+
+FcMakeTempfile()			rpath wpath cpath
+	- FcOpen(O_RDWR|O_CREAT)	rpath wpath cpath
+
+FcListValueListMatchAny()		stdio
+	- FcValueListNext		""
+	- FcConfigCompareValue		stdio
+	- FC_OP				""
+
+ft_srealloc()		stdio
+
+FT_FILENAME()		""
+
+ft_mem_table_get_nodep()	""
+	- FT_MEM_VAL		""
+
+ft_mem_table_remove()			stdio
+	- ft_mem_table_get_nodep	""
+	- ft_mem_debug_panic		stdio
+	- ft_mem_table_free		stdio
+	- ft_mem_table_resize		stdio
+
+ft_mem_table_free()			stdio
+	- *FT_MemTable->free		stdio
+
+ft_mem_table_get_source()		stdio
+	- ft_mem_table_alloc		stdio
+	- ft_mem_debug_panic		stdio
+
+ft_mem_table_resize()			stdio
+	- ft_mem_closest_prime		""
+	- ft_mem_table_alloc		stdio
+	- ft_mem_table_free		stdio
+
+byteReverse()		""
+
+MD5Transform()		""
+
+FcValueListSerializeAlloc()		stdio
+	- FcSerializeAlloc		""
+	- FcStrSerializeAlloc		""
+	- FcCharSetSerializeAlloc	stdio
+	- FcLangSetSerializeAlloc	""
+
+FcOffsetEncode()		""
+
+FcValueListSerialize()			stdio
+	- FcSerializePtr		""
+	- FcPtrToEncodedOffset		""
+	- FcStrSerialize		""
+	- FcCharSetSerialize		""
+	- FcLangSetSerialize		stdio
+
+FcStrLastSlash()		stdio
+
+FC_OP()				""
+	- FC_OP_GET_OP		""
+
+FT_MEM_VAL()			""
+
+*FT_MemTable->free()		stdio
+
+ft_mem_closest_prime()		""
+
+FcCharSetSerializeAlloc()		stdio
+	- FcRefIsConst			""
+	- FcCharSetFreezerCreate	stdio
+	- FcCharSetFindFrozen		""
+	- FcCharSetFreeze		stdio
+	- FcCharSetLeaves		""
+	- FcCharSetNumbers		""
+	- FcSerializeAlloc		""
+	- FcCharSetLeaf			""
+
+FcLangSetSerializeAlloc()		""
+	- FcSerializeAlloc		""
+
+FcCharSetSerialize()			""
+	- FcRefIsConst			""
+	- FcCharSetFindFrozen		""
+	- FcSerializePtr		""
+	- FcRefSetConst			""
+	- FcCharSetLeaves		""
+	- FcPtrToOffset			""
+	- FcCharSetNumbers		""
+	- FcCharSetLeaf			""
+
+FcLangSetSerialize()		stdio
+	- FcSerializePtr	""
+	- FC_MIN		""
+
+FcCharSetFreezerCreate()	stdio
+
+FcCharSetFindFrozen()		""
+
+FcCharSetFreeze()			stdio
+	- FcCharSetCreate		stdio
+	- FcCharSetFreezeLeaf		stdio
+	- FcCharSetLeaf			""
+	- FcCharSetInsertLeaf		stdio
+	- FcCharSetFreezeBase		stdio
+	- FcCharSetFreezeOrig		stdio
+	- FcCharSetLeaves		""
+	- FcCharSetNumbers		""
+
+FcCharSetFreezeLeaf()			stdio
+	- FcCharLeafHash		""
+	- FcCharLeafEntCreate		stdio
+
+FcCharSetInsertLeaf()			stdio
+	- FcCharSetFindLeafPos		""
+	- FcCharSetLeaf			""
+	- FcPtrToOffset			""
+	- FcCharSetLeaves		""
+	- FcCharSetPutLeaf		""
+
+FcCharSetFreezeBase()		stdio
+	- FcCharSetHash		""
+	- FcCharSetNumbers	""
+	- FcCharSetLeaf		""
+
+FcCharSetFreezeOrig()		stdio
+
+FcCharSetHash()			""
+	- FcCharLeafHash	""
+	- FcCharSetLeaf		""
+	- FcCharSetNumbers	""
+
+FcCharLeafHash()		""
+
+FcCharLeafEntCreate()		stdio
+
+_XCloseLC()			stdio
+	- Xfree			stdio
+	- _XlcDeInitLoader	stdio
+
+_XlcDeInitLoader()		stdio
+	- _XlcRemoveLoader	stdio
+
+XftFontClose()			stdio rpath getpw
+	- _XftDisplayInfoGet	stdio rpath getpw
+	- XftFontManageMemory	stdio
+	- XftFontDestroy	stdio
+
+XftFontManageMemory()		stdio
+	- XftFontFindNthUnref	""
+	- XftDebug		stdio
+	- XftFontDestroy	stdio
+
+XftFontDestroy()		stdio
+
+XftFontFindNthUnref()		""
+
+FcFreeTypeQuery()		stdio
+
+FT_Init_FreeType()			stdio
+	- FT_New_Memory			stdio
+	- FT_New_Library		stdio
+	- FT_Done_Memory		stdio
+	- FT_Add_Default_Modules	stdio
+
+FT_New_Memory()			stdio
+	ft_smalloc		stdio
+
+FT_New_Library()		stdio
+
+FT_Done_Memory()		stdio
+	ft_sfree		stdio
+
+ft_sfree()			stdio
+
+FT_Add_Default_Modules()	stdio
+	FT_Add_Module		stdio
+
+FT_Add_Module()			stdio
+
+DefaultRootWindow()		""
+
+XGrabKeyboard()			stdio rpath
+	- LockDisplay		stdio rpath
+	- GetReq		stdio rpath
+	- _XReply		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+XineramaQueryScreens()			stdio rpath
+	- find_display			stdio rpath
+	- PanoramiXCheckExtension	stdio
+	- LockDisplay			stdio rpath
+	- GetReq			stdio rpath
+	- _XReply			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+	- _XRead			stdio
+	- _XEatDataWords		stdio
+
+XGetInputFocus()			stdio rpath
+	- LockDisplay			stdio rpath
+	- GetEmptyReq			stdio rpath
+	- _XReply			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+XQueryTree()				stdio rpath
+	- LockDisplay			stdio rpath
+	- GetResReq			stdio rpath
+	- _XReply			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+	- _XEatDataWords		stdio
+	- _XRead32			stdio
+
+XGetWindowAttributes()			stdio rpath
+	- LockDisplay			stdio rpath
+	- _XGetWindowAttributes		stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+_XGetWindowAttributes()			stdio rpath
+	- GetResReq			stdio rpath
+	- _XReply			stdio rpath
+	- DeqAsyncHandler		""
+	- cvtINT16toInt			""
+
+XQueryPointer()			stdio rpath
+	- LockDisplay		stdio rpath
+	- GetResReq		stdio rpath
+	- _XReply		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+	- cvtINT16toInt		""
+
+XCreateWindow()				stdio rpath
+	- LockDisplay			stdio rpath
+	- GetReq			stdio rpath
+	- XAllocID			""
+	- _XProcessWindowAttributes	stdio
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+XOpenIM()			stdio rpath
+	- _XOpenLC		stdio rpath
+
+XCreateIC()				stdio
+	- _XIMCountVaList		stdio
+	- _XIMVaToNestedList		stdio
+
+XMapRaised()			stdio rpath
+	- LockDisplay		stdio rpath
+	- GetReqExtra		stdio rpath
+	- OneDataCard32		""
+	- NEXTPTR		""
+	- GetResReq		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+XftColorAllocName()		stdio rpath
+	- XAllocNamedColor	stdio rpath
+
+DefaultColormap()		""
+
+XNextEvent()				stdio rpath
+	- LockDisplay			stdio rpath
+	- _XFreeEventCookies		stdio
+	- _XReadEvents			stdio rpath
+	- _XDeq				stdio
+	- _XStoreEventCookie		stdio
+	- UnlockDisplay			stdio
+
+XFilterEvent()				stdio rpath
+	- LockDisplay			stdio rpath
+	- UnlockDisplay			stdio
+
+XRaiseWindow()				stdio rpath
+	- LockDisplay			stdio rpath
+	- GetReqExtra			stdio rpath
+	- OneDataCard32			""
+	- NEXTPTR			""
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+XFreePixmap()				stdio rpath
+	- LockDisplay			stdio rpath
+	- GetResReq			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+DefaultDepth()		""
+
+XSetForeground()		stdio rpath
+	- LockDisplay		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+XFillRectangle()		stdio rpath
+	- LockDisplay		stdio rpath
+	- FlushGC		stdio rpath
+	- GetReqExtra		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+XDrawRectangle()		stdio rpath
+	- LockDisplay		stdio rpath
+	- FlushGC		stdio rpath
+	- GetReqExtra		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+find_display()				stdio rpath
+	- find_display_create_optional	stdio rpath
+
+find_display_create_optional()	stdio rpath
+	- XextCreateExtension	stdio
+	- XextFindDisplay	stdio
+	- XextAddDisplay	stdio rpath
+	- GetVersionInfo	stdio rpath
+
+PanoramiXCheckExtension()	stdio
+	- XextCheckExtension	stdio
+
+GetResReq()			stdio rpath
+	- _XGetRequest		stdio rpath
+
+_XRead32()			stdio
+	- _XRead		stdio
+
+cvtINT16toInt()			""
+
+_XProcessWindowAttributes()	stdio
+
+_XIMCountVaList()			stdio
+	- _XIMCountNestedList		stdio
+
+_XIMVaToNestedList()			stdio
+	- _XIMNestedListToNestedList	stdio
+
+GetReqExtra()			stdio rpath
+	- GetReqSized		stdio rpath
+
+OneDataCard32()			""
+
+NEXTPTR()			""
+
+XAllocNamedColor()		stdio rpath
+
+_XReadEvents()				stdio rpath
+	- _XSend			stdio rpath
+	- check_internal_connections	stdio rpath
+	- ConditionWait			stdio
+	- UnlockDisplay			stdio
+	- xcb_wait_for_event		stdio
+	- InternalLockDisplay		stdio
+	- ConditionBroadcast		stdio
+	- _XIOError			stdio
+	- poll_for_response		stdio
+	- handle_response		stdio rpath
+	- ConditionWait			stdio
+	- poll_for_response		stdio
+	- xcb_connection_has_error	""
+
+_XDeq()					stdio
+	- _XIsEventCookie		stdio
+
+FlushGC()			stdio rpath
+	- _XFlushGCCache	stdio rpath
+
+_XFlushGCCache()		stdio rpath
+	- GetReq		stdio rpath
+	- _XGenerateGCList	stdio rpath
+
+XextCreateExtension()		stdio
+
+XextFindDisplay()		stdio
+	- _XLockMutex		stdio
+	- _XUnlockMutex		stdio
+
+XextAddDisplay()		stdio rpath
+	- Xmalloc		stdio
+	- XInitExtension	stdio rpath
+	- XESetWireToEvent	stdio rpath
+	- XESetEventToWire	stdio rpath
+	- xgeExtRegister	stdio rpath
+	- XESetCreateGC		stdio rpath
+	- XESetCopyGC		stdio rpath
+	- XESetFlushGC		stdio rpath
+	- XESetFreeGC		stdio rpath
+	- XESetCreateFont	stdio rpath
+	- XESetFreeFont		stdio rpath
+	- XESetCloseDisplay	stdio rpath
+	- XESetError		stdio rpath
+	- XESetErrorString	stdio rpath
+	- XAddExtension		stdio rpath
+	- XFree			stdio
+	- _XLockMutex		stdio
+	- _XUnlockMutex		stdio
+
+GetVersionInfo()		stdio rpath
+	- XQueryExtension	stdio rpath
+	- LockDisplay		stdio rpath
+	- GetReq		stdio rpath
+	- _XReply		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+
+XextCheckExtension()		stdio
+	- XextHasExtension	""
+	- XMissingExtension	stdio
+
+XextHasExtension()		""
+
+XMissingExtension()		stdio
+
+XESetEventToWire()		stdio rpath
+	- LockDisplay		stdio rpath
+	- UnlockDisplay		stdio
+
+xgeExtRegister()		stdio rpath
+	- _xgeFindDisplay	stdio rpath
+	- _xgeCheckExtInit	stdio rpath
+
+XESetCreateGC()			stdio rpath
+	- XLookupExtension	""
+	- LockDisplay		stdio rpath
+	- UnlockDisplay		stdio
+
+XESetCopyGC()			stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetFreeGC()			stdio rpath
+	- XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetFlushGC()			stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+ESetFreeGC()			stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetCreateFont()		stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetFreeFont()			stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetError()			stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+XESetErrorString()		stdio rpath
+        - XLookupExtension      ""
+        - LockDisplay           stdio rpath
+        - UnlockDisplay         stdio
+
+xcb_wait_for_event()			stdio
+	- _xcb_conn_wait		stdio
+	- _xcb_in_wake_up_next_reader	stdio
+	- get_event			stdio
+
+get_event()				stdio
+
+_XIMNestedListToNestedList()		stdio
+
+_XIMCountNestedList()			stdio
+
+_xgeCheckExtInit()			stdio rpath
+	- LockDisplay			stdio rpath
+	- _xgeCheckExtension		""
+	- _xgeGetExtensionVersion	stdio rpath
+	- UnlockDisplay			stdio
+
+_xgeFindDisplay()			stdio rpath
+	- XextCreateExtension		stdio
+	- XextFindDisplay		stdio
+	- XextAddDisplay		stdio rpath
+	- XESetWireToEvent		stdio rpath
+	- XESetEventToWire		stdio rpath
+
+_xgeCheckExtension()		""
+	- XextHasExtension	""
+
+_xgeGetExtensionVersion()	stdio rpath
+	- GetReq		stdio rpath
+	- _XReply		stdio rpath
+	- Xfree			stdio
+	- Xmalloc		stdio
+
+XftDrawCreate()
+	_XftDrawScreen
+	- XftMemAlloc		stdio
+
+XftCharExists()				""
+	- FcCharSetHasChar		""
+
+XftDrawStringUtf8()
+	- FcUtf8ToUcs4			""
+	- XftCharIndex			stdio rpath
+	- XftDrawGlyphs
+
+FcCharSetAddChar()			""
+	- FcRefIsConst			""
+	- FcCharSetFindLeafCreate	""
+
+FcPatternAddCharSet()		stdio
+	- FcPatternAdd		stdio
+
+XftDrawDestroy()		stdio rpath
+	- XRenderFreePicture	stdio rpath
+	- XFreeGC		stdio rpath
+	- XDestroyRegion	stdio
+	- XftMemFree		stdio
+
+XDestroyRegion()	stdio
+	- Xfree		stdio
+
+XFreeGC()			stdio rpath
+	- LockDisplay		stdio
+	- GetResReq		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+	- _XFreeExtData		stdio
+	- Xfree			stdio
+
+XRenderFreePicture()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- LockDisplay			stdio rpath
+	- GetReq			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+RenderSimpleCheckExtension()		""
+	- RenderHasExtension		""
+
+FcUtf8ToUcs4()				""
+
+XftCharIndex()				stdio rpath
+	- XftCharExists			""
+	- XftLockFace			stdio rpath
+	- FcFreeTypeCharIndex		stdio
+	- XftUnlockFace			stdio
+
+XftDrawGlyphs()
+	- _XftDrawRenderPrepare
+	- XftDrawSrcPicture
+	- XftGlyphRender		stdio rpath getpw
+	- _XftDrawOp			""
+	- _XftDrawCorePrepare
+	- XftGlyphCore
+
+FcCharSetHasChar()			""
+	- FcCharSetFindLeaf		""
+
+FcCharSetFindLeaf()			""
+	- FcCharSetFindLeafPos		""
+	- FcCharSetLeaf			""
+
+FcFreeTypeCharIndex()			stdio
+
+XftLockFace()			stdio rpath
+	- _XftLockFile		stdio rpath
+	- _XftSetFace		stdio
+	- _XftUnlockFile	stdio
+
+XftUnlockFace()			stdio
+	- _XftUnlockFile	stdio
+
+XftGlyphCore()
+	XftFontCheckGlyph
+	- XftFontLoadGlyphs		stdio rpath getpw
+	_XftSmoothGlyphPossible
+	_XftSmoothGlyphFind
+	XftGlyphExtents
+	- XSetErrorHandler		stdio
+	XGetImage
+	- XftDrawDepth			stdio rpath
+	- XCreatePixmap			stdio rpath
+	- XCreateGC			stdio rpath
+	XCopyArea
+	- XFreeGC			stdio rpath
+	XGetImage
+	- XFreePixmap			stdio rpath
+	- XftNativeByteOrder		""
+	XftSwapImage
+	XftSwapImage
+	XPutImage
+	XDestroyImage
+	_XftSharpGlyphFind
+	- _XftGlyphDefault
+	- _XftFontManageMemory		stdio rpath getpw
+
+_XftDrawCorePrepare()			stdio rpath
+	- XCreateGC			stdio rpath
+	- XSetRegion			stdio rpath
+	- XSetClipRectangles		stdio rpath
+	- XftClipRects			""
+	- XSetForeground		stdio rpath
+
+_XftDrawOp()		""
+
+XftGlyphRender()			stdio rpath getpw
+	- XftFontCheckGlyph		stdio rpath getpw
+	- XftFontLoadGlyphs		stdio rpath getpw
+	- XRenderCompositeString8	stdio rpath
+	- XRenderCompositeString16	stdio rpath
+	- XRenderCompositeString32	stdio rpath
+	- _XftFontManageMemory		stdio rpath getpw
+
+XftDrawSrcPicture()			stdio rpath getpw
+	- _XftDisplayInfoGet		stdio rpath getpw
+	- XRenderFreePicture		stdio rpath
+	- XCreatePixmap			stdio rpath
+	- RootWindow			""
+	- XRenderCreatePicture		stdio rpath
+	- XFreePixmap			stdio rpath
+	- XRenderFillRectangle		stdio rpath
+
+_XftDrawRenderPrepare()				stdio rpath getpw
+	- _XftDrawFormat			stdio rpath getpw
+	- XRenderCreatePicture			stdio rpath
+	- XRenderSetPictureClipRegion		stdio rpath
+	- XRenderSetPictureClipRectangles	stdio rpath
+	- XftClipRects				""
+
+_XftDrawFormat()				stdio rpath getpw
+	- _XftDisplayInfoGet			stdio rpath getpw
+	- XftDrawDepth				stdio rpath
+	- XRenderFindFormat			stdio rpath
+	- XRenderFindVisualFormat		stdio rpath
+
+XRenderCreatePicture()				stdio rpath
+	- XRenderFindDisplay			stdio rpath
+	- RenderCheckExtension			""
+	- LockDisplay				stdio rpath
+	- GetReq				stdio rpath
+	- XAllocID				""
+	- _XRenderProcessPictureAttributes	stdio rpath
+	- UnlockDisplay				stdio
+	- SyncHandle				stdio rpath
+
+_XRenderProcessPictureAttributes()		stdio rpath
+	- Data32				stdio rpath
+
+Data32()		stdio rpath
+	- _XData32	stdio rpath
+
+_XData32()		stdio rpath
+	- _XFlush	stdio rpath
+
+XftDrawDepth()			stdio rpath
+	- XGetGeometry		stdio rpath
+
+XGetGeometry()			stdio rpath
+	- LockDisplay		stdio rpath
+	- GetResReq		stdio rpath
+	- _XReply		stdio rpath
+	- UnlockDisplay		stdio
+	- SyncHandle		stdio rpath
+	- cvtINT16toInt		""
+
+XRenderSetPictureClipRegion()			stdio rpath
+	- XRenderFindDisplay			stdio rpath
+	- RenderSimpleCheckExtension		""
+	- LockDisplay				stdio rpath
+	- _XAllocTemp				stdio
+	- _XRenderSetPictureClipRectangles	stdio rpath
+	- _XFreeTemp				stdio
+	- UnlockDisplay				stdio
+	- SyncHandle				stdio rpath
+
+_XAllocTemp()			stdio
+	- _XAllocScratch	stdio
+
+_XAllocScratch()		stdio
+	- Xfree			stdio
+	- Xmalloc		stdio
+
+_XRenderSetPictureClipRectangles()	stdio rpath
+	- GetReq			stdio rpath
+	- SetReqLen			stdio rpath
+	- Data16			stdio rpath
+
+SetReqLen()				stdio rpath
+
+Data16()				stdio rpath
+
+_XFreeTemp()				stdio
+	- Xfree				stdio
+
+XftClipRects()				""
+
+XRenderFillRectangle()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- LockDisplay			stdio rpath
+	- GetReqExtra			stdio rpath
+	- UnlockDisplay			stdio
+	- SyncHandle			stdio rpath
+
+XSetClipRectangles()		stdio rpath
+	- _XSetClipRectangles	stdio rpath
+
+_XSetClipRectangles()		stdio rpath
+	- GetReq		stdio rpath
+	- SetReqLen		stdio rpath
+	- Data16		stdio rpath
+
+XSetRegion()			stdio rpath
+	- _XAllocTemp		stdio
+	- _XSetClipRectangles	stdio rpath
+	- _XFreeTemp		stdio
+
+_XftFontManageMemory()			stdio rpath getpw
+	- XftDebug			stdio
+	- _XftFontUncacheGlyph		stdio rpath getpw
+	- _XftDisplayManageMemory	stdio rpath getpw
+
+XRenderCompositeString32()		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- GetReq			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- _XFlush			stdio rpath
+	- BufAlloc			stdio rpath
+
+BufAlloc()				stdio rpath
+	- _XFlush			stdio rpath
+
+XRenderCompositeString16()		stdio rpath
+	// see ...32
+
+XRenderCompositeString8()		stdio rpath
+	// see ...32
+
+XftFontLoadGlyphs()				stdio rpath getpw
+	- _XftDisplayInfoGet			stdio rpath getpw
+	- XftLockFace				stdo rpath
+	- XftDebug				stdio
+	- _XftFontValidateMemory		stdio
+	- FT_Library_SetLcdFilter		""
+	- FT_Load_Glyph				stdio
+	- FT_GlyphSlot_Embolden			stdio
+	- FT_Vector_Transform			""
+	- FT_Render_Glyph			stdio
+	- _compute_xrender_bitmap_size		stdio
+	- _fill_xrender_bitmap			stdio
+	- XRenderCreateGlyphSet			stdio rpath
+	- BitmapBitOrder			""
+	- ImageByteOrder			""
+	- XftNativeByteOrder			""
+	- XftSwapCARD32				""
+	- XRenderAddGlyphs			stdio rpath
+	- XftUnlockFace				stdio
+
+_XftFontUncacheGlyph()			stdio rpath getpw
+	- XRenderFreeGlyphSet		stdio rpath
+	- XftDebug			stdio
+	- _XftFontValidateMemory	stdio
+	- XftFontUnloadGlyphs		stdio rpath getpw
+	- _XftFontValidateMemory	stdio
+
+_XftDisplayManageMemory()		stdio rpath getpw
+	- _XftDisplayInfoGet		stdio rpath getpw
+	- _XftDisplayValidateMemory	stdio
+	- _XftFontUncacheGlyph		stdio rpath getpw
+
+_XftDisplayValidateMemory()		stdio
+
+_XftFontValidateMemory()		stdio
+
+XftFontUnloadGlyphs()			stdio rpath getpw
+	- _XftDisplayInfoGet		stdio rpath getpw
+	- XRenderFreeGlyphs		stdio rpath
+	- XftMemFree			stdio
+
+XRenderFreeGlyphs()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- GetReq			stdio rpath
+	- Data32			stdio rpath
+
+XRenderFreeGlyphSet()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- GetReq			stdio rpath
+
+XRenderAddGlyphs()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderSimpleCheckExtension	""
+	- GetReq			stdio rpath
+	- SetReqLen			stdio rpath
+	- Data32			stdio rpath
+	- Data16			stdio rpath
+	- Data				stdio rpath
+
+XftSwapCARD32()				""
+
+XftNativeByteOrder()			""
+
+ImageByteOrder()			""
+
+BitmapBitOrder()			""
+
+XRenderCreateGlyphSet()			stdio rpath
+	- XRenderFindDisplay		stdio rpath
+	- RenderCheckExtension		""
+	- GetReq			stdio rpath
+	- XAllocID			""
+
+_fill_xrender_bitmap()			stdio
+
+_compute_xrender_bitmap_size()		stdio
+
+FT_Render_Glyph()			stdio
+	- FT_FACE_LIBRARY		""
+	- FT_Render_Glyph_Internal	stdio
+
+FT_Render_Glyph_Internal()		stdio
+	- FT_Lookup_Renderer		""
+	- *FT_Renderer->render		stdio
+
+FT_Lookup_Renderer()			""
+	- FT_RENDERER			""
+
+FT_RENDERER()				""
+
+*FT_Renderer->render()			stdio
+	- FT_Outline_Get_CBox		""
+	- FT_Outline_Translate		""
+	- *FT_Renderer->raster_render	stdio
+	- ft_memcpy			stdio
+
+*FT_Renderer->raster_render()		stdio
+	- Render_Glyph			stdio
+
+Render_Glyph()				stdio
+	- Set_High_Precision		""
+	- Render_Single_Pass		stdio
+
+Render_Single_Pass()			stdio
+	- Convert_Glyph			""
+	- Draw_Sweep			stdio
+
+Set_High_Precision()			""
+
+Draw_Sweep()				stdio
+	- Init_Linked			""
+	- InsNew			""
+	- .Proc_Sweep_Init		""
+	- .Proc_Sweep_Span		""
+	- .Proc_Sweep_Step		""
+	- .Proc_Sweep_Drop		""
+
+.Proc_Sweep_Init()			""
+.Proc_Sweep_Span()			""
+.Proc_Sweep_Step()			""
+.Proc_Sweep_Drop()			""
+
+InsNew()				""
+
+Init_Linked()				""
+
+Convert_Glyph()				""
+	- Decompose_Curve		""
+	- End_Profile			""
+	- Finalize_Profile_Table	""
+
+Decompose_Curve()			""
+
+End_Profile()				""
+
+Finalize_Profile_Table()		""
+
+FT_Outline_Translate()			""
+
+FT_Outline_Get_CBox()			""
+
+FT_GlyphSlot_Embolden()			stdio
+
+FT_Load_Glyph()				stdio
+
+FT_Library_SetLcdFilter()		"" // unimplemented? just throws an exception
+
+XftFontCheckGlyph()			stdio rpath getpw
+	- XftMemAlloc			stdio
+	- XftFontLoadGlyphs		stdio rpath getpw
+
+_XftGlyphDefault()
+	XftFontCheckGlyph
+	XftFontLoadGlyphs
+
+XftFontLoadGlyphs()
+	_XftDisplayInfoGet
+	XftLockFace
+	XftDebug
+	_XftFontValidateMemory
+	FT_Library_SetLcdFilter
+	FT_Load_Glyph
+	FT_GlyphSlot_Embolden
+	FT_Vector_Transform
+	FT_Render_Glyph
+	_compute_xrender_bitmap_size
+	XRenderCreateGlyphSet
+	BitmapBitOrder
+	ImageByteOrder
+	XftNativeByteOrder
+	XRenderAddGlyphs
+
+XCopyArea
+	- LockDisplay
+	- FlushGC
+	- GetReq
+	- UnlockDisplay
+	- SyncHandle
